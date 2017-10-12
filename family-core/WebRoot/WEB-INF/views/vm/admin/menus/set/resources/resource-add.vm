@@ -1,0 +1,117 @@
+##资源添加
+<div class="row">
+	<div class="col-md-12">
+		<div id="add-new-resource" class="modal fade modal-scroll" tabindex="-1" data-replace="true">
+        	<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        		<h4 class="modal-title">资源表单</h4>
+        	</div>
+			##模态框内容START
+			<div class="modal-body">
+            	<div class="portlet light bordered">
+					##表单标题START
+            		<div class="portlet-title">
+            			<div class="caption font-green-haze">
+            				<i class="icon-settings font-green-haze"></i>
+            				<span class="caption-subject bold uppercase">新增资源</span>
+            			</div>
+            			<div class="actions">
+            				<a class="btn btn-circle btn-icon-only blue" href="javascript:;">
+            				<i class="icon-cloud-upload"></i>
+            				</a>
+            				<a class="btn btn-circle btn-icon-only green" href="javascript:;">
+            				<i class="icon-wrench"></i>
+            				</a>
+            				<a class="btn btn-circle btn-icon-only red" href="javascript:;">
+            				<i class="icon-trash"></i>
+            				</a>
+            				<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
+            				</a>
+            			</div>
+            		</div>
+					##表单标题END
+					##表单内容START
+            		<div class="portlet-body form">
+            			<form role="form" class="resource-add-new-form">
+            				<div class="form-body">
+        						<div class="form-group form-md-line-input form-md-floating-label has-success">
+        							<div >
+        								<div class="input-group">
+        									<input type="text" class="form-control" name="roleName" id="roleName"/>	
+        									<label for="form_control_1">资源名</label>
+        									<div class="form-control-focus">
+        									</div>	
+        									<span class="input-group-addon red">
+        										必填
+        									</span>																						
+        								</div>
+        							</div>
+        						</div>
+								<div class="form-group form-md-line-input form-md-floating-label has-success">
+									
+									<select class="form-control edited" id="form_control_1" name="userSex">
+									#select("sex")	
+									</select>
+        							<label for="form_control_1">资源类型</label>
+        						</div>
+								<div class="form-group form-md-line-input form-md-floating-label has-success">
+        							<select class="form-control edited" id="form_control_1" name="userSex">
+        								#select("priority")
+        							</select>
+        							<label for="form_control_1">资源优先级</label>
+        						</div>
+								<div class="form-group form-md-line-input  form-md-floating-label has-success">
+        							<div >
+        								<div class="input-group">
+        									<input type="text" class="form-control" name="roleSysName" id="roleSysName"/>
+                							<label for="form_control_1">资源链接</label>
+        									<div class="form-control-focus">
+        									</div>	
+											<span class="input-group-addon red">
+        										
+        									</span>	
+                                        </div>
+                                    </div>
+            					</div>
+								<div class="form-group form-md-line-input  form-md-floating-label has-success">
+        							<div >
+        								<div class="input-group">
+        									<input type="text" class="form-control" name="roleSysName" id="roleSysName"/>
+                							<label for="form_control_1">状态</label>
+        									<div class="form-control-focus">
+        									</div>	
+											<span class="input-group-addon red">
+        										
+        									</span>	
+                                        </div>
+                                    </div>
+            					</div>
+        						<div class="form-group form-md-line-input form-md-floating-label">
+            						<textarea class="form-control" rows="3" name="roleDesc"></textarea>
+            						<label for="form_control_1">备注</label>
+            					</div>
+            				</div>
+            				<div class="form-actions">
+            					<div class="row">
+                            		<div class="col-md-offset-2 col-md-10">
+                            			<button type="button" data-dismiss="modal" class="btn btn-default">关闭</button>
+                            			<button type="submit" class="btn blue">提交</button>
+                        				<button type="reset"  class="btn gray">重置</button>
+                            		</div>
+                            	</div>
+            				</div>
+            			</form>
+    				</div>
+					##表单内容END
+					##表单页脚START
+                	##<div class="modal-footer">
+                		
+                	##</div>
+					##表单页脚END
+				</div>
+				
+			</div>
+			##模态框内容END
+		</div>
+	</div>
+</div>	

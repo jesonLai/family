@@ -1,0 +1,208 @@
+<div class="row" >
+	<div class="col-md-12">
+		<div id="add-image" class="modal modal-scroll fade" tabindex="-1">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true"></button>
+			</div>
+			<div class="modal-body">
+			<div class="portlet light bordered">
+				##表单标题START
+				<div class="portlet-title">
+					<div class="caption font-green-haze">
+						<i class="icon-settings font-green-haze"></i> <span
+							class="caption-subject bold uppercase" id="user_title_table">图片编辑</span>
+					</div>
+<!-- 					<div class="actions"> -->
+<!-- 						<div class="btn-group btn-group-devided" data-toggle="buttons"> -->
+<!-- 								<button type="button" data-dismiss="modal" class="btn btn-default btn-circle">关闭</button> -->
+<!-- 								<button type="button" class="btn blue btn-circle" onclick="javascript:$('#fileupload').submit();">提交</button> -->
+<!-- 						</div> -->
+<!-- 						<a class="btn btn-circle btn-icon-only btn-default fullscreen" -->
+<!-- 							href="javascript:;" data-original-title="" title=""> </a> -->
+							
+<!-- 					</div> -->
+				</div>
+				##表单标题END $!{req.contextPath}/admin/menus/image/action/upload
+
+				<div class="portlet-body form">
+					<form id="fileupload" action=""  onsubmit="return false" method="POST" enctype="multipart/form-data">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<input type="hidden" id="name" name="name"/>
+						<input type="hidden" id="folder" name="folder"/>
+						<div class="form-group last">
+										<label class="control-label col-md-3">封面</label>
+										<div class="col-md-9">
+											<div class="fileinput fileinput-new" data-provides="fileinput">
+												<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+													<img src="$!{req.contextPath}/monkey/global/img/default_avatar_male.jpg" onerror="onerror=null;src='$!{req.contextPath}/monkey/global/img/default_avatar_male.jpg'" alt="" id="imageNew" />
+												</div>
+												<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+												</div>
+												<div>
+													<span class="btn default btn-file">
+													<span class="fileinput-new">
+													选择图片 </span>
+													<span class="fileinput-exists">
+													重新选择 </span>
+													<input type="file" name="...">
+													<input type="hidden" name="thumbnailUrl"  id="thumbnailUrl"/>
+													</span>
+													<a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput">
+													移除 </a>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+						<div class="row">
+							<div class="col-md-12">
+        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+        							<input type="text" class="form-control" id="eventType" name="eventType" maxlength="25" value="">
+        							<label for="form_control_1">事件名称</label>
+            					</div>
+          					</div>
+						</div>
+							<div class="row">
+	        						<div class="col-md-12">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control" id="title" name="title" maxlength="100" >
+		        							<label for="form_control_1">标题</label>
+		            					</div>
+            						</div>
+								</div>
+						<div class="row">
+	        						<div class="col-md-12">
+										<label>图片详细:</label>
+									</div>
+								</div>
+<!-- 								<div class="row"> -->
+									<script id="editor" type="text/plain" style="width:100%;height: 200px;"></script>
+									<input type="hidden" name="content" id="content"/>
+									<input type="hidden" id="imgId"  name="imgId"/>
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+<!-- 								</div> -->
+						<!-- The table listing the files available for upload/download -->
+						<div class="tab-pane" id="tab_images">
+<!-- 							<table role="presentation" class="table table-striped clearfix "> -->
+<!-- 								<tbody class="files"> -->
+<!-- 								</tbody> -->
+<!-- 							</table> -->
+					<div class="row mix-grid files">
+
+					</div>
+						</div>
+						<div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-2 col-md-10">
+										<button type="button" data-dismiss="modal"
+											class="btn btn-default">关闭</button>
+										<button type="submit" class="btn blue " >提交</button>
+									</div>
+								</div>
+							</div>
+						
+						
+					</form>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+
+<div class="col-md-3 col-sm-4 mix category_1 mix_all template-upload" style="display: block;  opacity: 1;">
+		<div  style="margin-bottom:100px">
+				 <span class="preview"></span>
+			<div class="mix-details">
+				<p class="name">{%=file.name%}</p>
+            	<strong class="error text-danger label label-danger"></strong>
+ 				<p class="size">Processing...</p>
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                 <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                </div>
+ 			{% if (!i && !o.options.autoUpload) { %}
+                <button class="btn blue start" disabled>
+                    <i class="fa fa-upload"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}
+            {% if (!i) { %}
+                <button class="btn red cancel">
+                    <i class="fa fa-ban"></i>
+                    <span>删除</span>
+                </button>
+            {% } %}
+			</div>
+		</div>
+	</div>
+{% } %}
+
+
+
+	</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+<div class="col-md-3 col-sm-4 mix category_1 mix_all template-download" style="display: block;  opacity: 1;">
+		<div  style="margin-bottom:100px">
+				 <span class="preview image-container">
+                        {% if (file.thumbnailUrl) { %}
+                            <a href="{%=file.thumbnailUrl%}" class="fancybox-button" data-rel="fancybox-button" title="{%=file.name%}" download="{%=file.name%}" data-gallery ><img width="54" height="80" src="{%=file.thumbnailUrl%}"></a>
+                        {% } %}
+                    </span>
+			<div class="mix-details">
+				  <p class="name">
+                        {% if (file.url) { %}
+                            <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                        {% } else { %}
+                            <span>{%=file.name%}</span>
+                        {% } %}
+                    </p>
+                    {% if (file.error) { %}
+                        <div  style="margin-bottom:50px"><span class="label label-danger">Error</span> {%=file.error%}</div>
+                    {% } %}
+					{% if (file.message) { %}
+                        <div  style="margin-bottom:50px"><span class="label label-success">Success</span> {%=file.message%}</div>
+ 					{% } %}
+					 <span class="size">{%=o.formatFileSize(file.size)%}</span>
+ 					{% if (file.deleteUrl) { %}
+                        <button class="btn red delete btn-sm" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                            <i class="fa fa-trash-o"></i>
+                            <span>删除</span>
+                        </button>
+                        <input type="checkbox" name="delete" value="1" class="toggle">
+                    {% } else { %}
+                        <button class="btn yellow cancel btn-sm">
+                            <i class="fa fa-ban"></i>
+                            <span>删除</span>
+                        </button>
+                    {% } %}
+			</div>
+		</div>
+	</div>
+
+
+        {% } %}
+    </script>
+    <script type="text/javascript">
+<!--
+FormFileUpload.ueditor('${_csrf.parameterName}','${_csrf.token}');
+var eventType=$('#eventType');
+eventType.autocomplete({
+    lookup: $!{EVENTYPENAME},
+    zIndex:10052,
+    minChars:0,
+    matchCase:false,
+    matchContains:true,
+    matchContains: "word",
+    onSelect: function(suggestion) {
+          eventType.addClass("edited");
+    },
+})
+//-->
+</script>

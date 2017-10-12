@@ -1,0 +1,16 @@
+##用户容器
+<div class="row">
+    <div class="col-md-12">
+		#parse("admin/menus/set/familynews/familynews-list.vm")
+    </div>
+</div>
+<script type="text/javascript" >
+<!-- 
+	jQuery(function($){
+	    $.getScript( "$!{req.contextPath}/monkey/vm/menus/set/familyNews/familyNews.js", function( data, textStatus, jqxhr ) {
+	    	
+	    	familyNews.init();
+	    });
+	});
+//-->
+</script>	

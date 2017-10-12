@@ -1,0 +1,12 @@
+<sitemesh>
+  <mime-type>text/html</mime-type>  
+  <mime-type>application/vnd.wap.xhtml+xml</mime-type>  
+  <mime-type>application/xhtml+xml</mime-type> 
+  <mapping path="/user/*" decorator="/layout/front_decorator.jsp"/>
+  <mapping path="/user/center.html" decorator="/layout/front_decorator.jsp"/>
+  <mapping path="/login.html" decorator="/layout/front_decorator.jsp"/>
+  <mapping path="/error.jsp" decorator="/layout/front_decorator.jsp"/>
+<!--   <content-processor> -->
+<!-- 	<tag-rule-bundle class="sys.family.tag.SitemeshUser"/> -->
+<!-- </content-processor> -->
+</sitemesh>

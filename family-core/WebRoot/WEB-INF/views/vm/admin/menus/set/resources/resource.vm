@@ -1,0 +1,12 @@
+##资源容器
+<script src="$!{req.contextPath}/monkey/vm/menus/set/resource/resource.js"></script>
+<div class="row">
+    <div class="col-md-12">
+		#parse("menus/set/resources/resource-list.vm")
+    </div>
+</div>
+<script>
+jQuery(function($){
+    resource.init();
+});
+</script>

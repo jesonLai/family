@@ -1,0 +1,55 @@
+##头部菜单
+<!-- BEGIN HEADER -->
+	#set($urls=$session.getAttribute("SPRING_SECURITY_CONTEXT"))
+<div class="page-header navbar navbar-fixed-top">
+	<!-- BEGIN HEADER INNER -->
+	<div class="page-header-inner">
+		<!-- BEGIN LOGO -->
+		<div class="page-logo">
+			<a href="javascript:;">
+			##<img src="$!{req.contextPath}/monkey/layout/img/logo.png" alt="logo" class="logo-default"/>
+			</a>
+			<div class="menu-toggler sidebar-toggler hide">
+			</div>
+		</div>
+		<!-- END LOGO -->
+		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+		<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+		</a>
+		<!-- END RESPONSIVE MENU TOGGLER -->
+		<!-- BEGIN TOP NAVIGATION MENU -->
+		<div class="top-menu">
+			<ul class="nav navbar-nav pull-right">
+				<!-- END TODO DROPDOWN -->
+				<!-- BEGIN USER LOGIN DROPDOWN -->
+				<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+				<li class="dropdown dropdown-user">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+					<img alt="" id="h_Img" class="img-circle" src="#if("$!{HEANDIMAGESRC}"=="")$!{req.contextPath}/monkey/global/img/default_avatar_male.jpg #else $!{req.contextPath}/$!{HEANDIMAGESRC} #end"
+					onerror="onerror=null;src='$!{req.contextPath}/monkey/global/img/default_avatar_male.jpg'"/>
+					<span class="username username-hide-on-mobile">
+					$!{urls.authentication.principal.username}
+					</span>
+					<i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-default">
+						<li>
+							<a href="$!{req.contextPath}/admin/index.html">
+							<i class="icon-user"></i> 个人中心 </a>
+						</li>
+						<li class="divider">
+						</li>
+						<li>
+							<a href="$!{req.contextPath}/logout">
+							<i class="icon-key"></i>退出系统</a>
+						</li>
+					</ul>
+				</li>
+				<!-- END QUICK SIDEBAR TOGGLER -->
+			</ul>
+		</div>
+		<!-- END TOP NAVIGATION MENU -->
+	</div>
+	<!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->

@@ -1,0 +1,112 @@
+##新增用户账号
+<div class="row">
+	<div class="col-md-12">
+		<div id="add-new-form" class="modal modal-scroll" tabindex="-1" data-replace="true">
+        	<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+<!--         		<h4 class="modal-title">登录账号表单</h4> -->
+        	</div>
+			##模态框内容START
+			<div class="modal-body">
+            	<div class="portlet light bordered">
+					##表单标题START
+            		<div class="portlet-title">
+            			<div class="caption font-green-haze">
+            				<i class="icon-settings font-green-haze"></i>
+            				<span class="caption-subject bold uppercase" id="user_title_table">登录账号表单</span>
+            			</div>
+            			<div class="actions">
+            			
+            				<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
+            				</a>
+            			</div>
+            		</div>
+					##表单标题END
+					##表单内容START
+
+            		<div class="portlet-body form">
+            			<form role="form" class="user-add-new-form" action="# method="POST" onSubmit="return false;">
+            				#if("$!{USERS.uId}"!="")
+            					<input type="hidden" name="uId" id="uId" value="$!{USERS.uId}"/>
+            				#end
+            				<div class="form-body">
+        						<div class="row">
+	        						<div class="col-md-12">
+		        						<div class="form-group form-md-line-input form-md-floating-label has-success">
+			        						<div class="input-group">
+			        							<input type="text" class="form-control #if("$!{USERS.userAccount}"!="")edited #end" id="userAccount" name="userAccount" maxlength="50" value="$!{USERS.userAccount}" />
+			        							<label for="form_control_1">登录账号</label>
+			        							<div class="form-control-focus">
+	        									</div>	
+	        									<span class="input-group-addon red">
+	        										必填
+	        									</span>		
+			            					</div>
+			            				</div>
+	            					</div>
+	            					</div>
+	            						<div class="row">
+	        						<div class="col-md-12">
+		        						<div class="form-group form-md-line-input form-md-floating-label has-success">
+			        						<div class="input-group">
+			        							<input type="text" class="form-control " id="userPassword" name="userPassword" maxlength="100" />
+			        							<span  class="help-block">默认密码：12345678</span>
+			        							<label for="form_control_1">登录密码</label>
+			        							<div class="form-control-focus">
+			        								
+	        									</div>	
+	        									<span class="input-group-addon">
+	        									</span>		
+			            					</div>
+			            				</div>
+	            					</div>
+	            					</div>
+	            					<div class="row">
+									<div class="col-md-12">
+										<select id='custom-headers' multiple='multiple'>
+										#getFamilyRole($!{USERS.uId})
+										</select>
+									</div>
+								</div>
+            				</div>
+           					
+            			<div class="form-actions">
+            				<div class="row">
+	                    		<div class="col-md-offset-2 col-md-10">
+	                    			<button type="button" data-dismiss="modal" class="btn btn-default">关闭</button>
+	                    			<button type="submit" class="btn blue " >提交</button>
+	                				<button type="reset"  class="btn gray">重置</button>
+	                    		</div>
+            				</div>
+            			</div>
+            			</form>
+    				</div>
+					##表单内容END
+					##表单页脚START
+                	##<div class="modal-footer">
+                		
+                    	##</div>
+                	</div>
+					##表单页脚END
+				</div>
+				
+			</div>
+			##模态框内容END
+		</div>
+	</div>
+<script type="text/javascript">
+<!--
+$('.date-picker').datepicker({
+    autoclose: true
+});
+
+$('#custom-headers').multiSelect({
+	selectableHeader: "<div class='custom-header'>未有角色</div>",
+	selectionHeader: "<div class='custom-header'>拥有的角色</div>",
+});
+var userLoginInitRole=[];
+$('#custom-headers :selected').each(function(){
+	userLoginInitRole.push($(this).val());
+})
+//-->
+</script>

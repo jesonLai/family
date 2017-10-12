@@ -1,0 +1,63 @@
+##编辑
+<div class="row">
+	<div class="col-md-12">
+	<div id="add-UEditor-announcement" class="modal modal-scroll fade" tabindex="-1">
+	<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        	</div>
+				<div class="portlet light bordered">
+					##表单标题START
+					<div class="portlet-title">
+						<div class="caption font-green-haze">
+							<i class="icon-settings font-green-haze"></i> <span
+								class="caption-subject bold uppercase" id="user_title_table">公告</span>
+								<div class="tools">
+				    			</div>
+						</div>
+					</div>
+					##表单标题END ##表单内容
+					<div class="portlet-body form">
+						<form role="form" class="ueditor-form"  method="POST">
+							<div class="form-body">
+								<div class="row">
+	        						<div class="col-md-12">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control" id="title" name="title" maxlength="100">
+		        							<label for="form_control_1">标题</label>
+		            					</div>
+            						</div>
+								</div>
+								<div class="row">
+	        						<div class="col-md-12">
+										<label>公告编辑:</label>
+									</div>
+								</div>
+<!-- 								<div class="row"> -->
+									<script id="editor" type="text/plain" style="width:100%;height: 200px;"></script>
+									<input type="hidden" id="announcementId" name="id"/>
+									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+<!-- 								</div> -->
+							</div>
+							<div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-2 col-md-10">
+										<button type="button" data-dismiss="modal"
+											class="btn btn-default">关闭</button>
+										<button type="submit" class="btn blue " >提交</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					##表单内容END ##表单页脚START ##
+					<div class="modal-footer">##</div>
+				</div>
+				##表单页脚END
+				</div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+announcement.ueditor('${_csrf.parameterName}','${_csrf.token}');
+//-->
+</script>

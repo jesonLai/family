@@ -1,0 +1,15 @@
+##广告管理
+<div class="row">
+    <div class="col-md-12">
+		#parse("admin/menus/set/advertisement/advertisement-list.vm")
+    </div>
+</div>
+<script type="text/javascript" >
+<!-- 
+	jQuery(function($){
+	    $.getScript("$!{req.contextPath}/monkey/vm/menus/set/advertisement/advertisement.js", function( data, textStatus, jqxhr ) {
+	    	advertisement.init();
+	    });
+	});
+//-->
+</script>	

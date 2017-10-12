@@ -1,0 +1,80 @@
+##编辑
+<div class="row">
+	<div class="col-md-12">
+		<div id="add-modal-authority" class="modal modal-scroll fade" tabindex="-1">
+			<div class="modal-header">
+		      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+		    </div>
+			<div class="portlet light bordered">
+			
+				##表单标题START
+				<div class="portlet-title">
+					<div class="caption font-green-haze">
+						<i class="icon-settings font-green-haze"></i> <span
+							class="caption-subject bold uppercase" id="user_title_table">权限中心设置</span>
+					</div>
+					<div class="actions">
+           				<button type="button" class="btn blue"  onclick="javascript:$('.authority-form').submit();">提交<i class="fa fa-plus"></i></button>
+           				<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
+           				</a>
+           			</div>
+				</div>
+				##表单标题END ##表单内容
+				<div class="portlet-body form">
+					<form role="form" class="authority-form"  method="POST" onSubmit="return false;">
+						<div class="form-body">
+							<div class="row">
+        						<div class="col-md-12">
+	        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+	        							<input type="text" class="form-control #if("$!{AUTHORITY.authorityName}"!="")edited #end" id="authorityId" name="authorityId" maxlength="100" value="$!{AUTHORITY.authorityName}"/>
+	        							<label for="form_control_1">权限编号</label>
+	            					</div>
+           						</div>		
+           					</div>
+							<div class="row">
+        						<div class="col-md-12">
+	        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+	        							<input type="text" class="form-control #if("$!{AUTHORITY.authorityName}"!="")edited #end" id="authorityName" name="authorityName" maxlength="100" value="$!{AUTHORITY.authorityName}"/>
+	        							<label for="form_control_1">权限名称</label>
+	            					</div>
+           						</div>
+							</div>
+							<div class="row">
+        						<div class="col-md-12">
+	        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+	        							<input type="text" class="form-control" id="authorityGroupName" name="authorityGroupName" maxlength="100"/>
+	        							<label for="form_control_1">权限组</label>
+	            					</div>
+           						</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{AUTHORITY.authorityDesc}"!="")edited #end" id="authorityDesc" name="authorityDesc" maxlength="100" value="$!{AUTHORITY.authorityDesc}"/>
+		        							<label for="form_control_1">权限描述</label>
+		            					</div>
+            					</div>
+           					</div>
+						</div>
+					</form>
+			</div>
+			##表单页脚END
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+$('#authorityGroupName').autocomplete({
+    lookup: $!{AUTHORITYGROUPNAME},
+    zIndex:10052,
+    minChars:0,
+    matchCase:false,
+    matchContains:true,
+    matchContains: "word",
+    onSelect: function(suggestion) {
+           $('#authorityGroupName').addClass("edited");
+    },
+})
+//-->
+</script>

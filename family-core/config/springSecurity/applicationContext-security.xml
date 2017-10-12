@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+	<!-- 不用经过spring security过滤，一般js、css都不需要过滤 -->
+	<http pattern="/front/**" security="none" />
+	<http pattern="/monkey/**" security="none" />
+	<http pattern="/user/index.html" security="none" />
+	<http pattern="/test/upload/image?" security="none" />
+	
+	<http use-expressions="true" auto-config="false" entry-point-ref="authenticationProcessingFilterEntryPoint">
+		<!-- 单用户登陆 -->
+<!-- 		<intercept-url pattern="/*" access="permitAll"/> -->
+<!-- 		<intercept-url pattern="/admin/login.html" access="permitAll"/> -->
+
+
+		<!-- 这种自定义的登录页面，不能经过security的用户信息验证，也就等于不能取出用户的权限 <form-login login-page='/login.jsp' 
+			default-target-url="/index.jsp"/> -->
+		<!-- 尝试访问没有权限的页面时跳转的页面 -->
+<!-- 		<access-denied-handler error-page="/403.jsp" /> -->
+		<access-denied-handler ref="accessDeniedHandler"/>  
+		
+		<custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER" />
+
+		<custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+		
+
+
+		<!-- 检测失效的sessionId,session超时时，定位到另外一个URL -->
+		<!-- 		<custom-filter ref="concurrencyFilter" position="CONCURRENT_SESSION_FILTER"/>   -->
+<!-- 		<session-management session-fixation-protection="migrateSession" invalid-session-url="/login.html" > -->
+<!-- 			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" expired-url="/login.html" session-registry-alias="sessionRegistry" /> -->
+<!-- 		</session-management> -->
+<session-management session-authentication-strategy-ref="concurrentSessionControlStrategy" />
+
+
+		<custom-filter ref="logoutFilter" position="LOGOUT_FILTER"/>
+		<custom-filter ref="concurrencyFilter" position="CONCURRENT_SESSION_FILTER"/>  
+		<headers defaults-disabled="true">
+			<cache-control/>
+        	<frame-options policy="SAMEORIGIN" />
+    	</headers>
+	</http>
+
+	<!-- 登录验证器 -->
+	<beans:bean id="loginFilter" class="sys.springframework.security.MyUsernamePasswordAuthenticationFilter" >
+		<beans:property name="filterProcessesUrl" value="/loginUser"></beans:property>
+		<beans:property name="usernameParameter" value="username"/>
+      	<beans:property name="passwordParameter" value="password"/>
+		<!-- 验证成功后的处理 -->
+		<beans:property name="authenticationSuccessHandler" ref="loginLogAuthenticationSuccessHandler"></beans:property>
+
+		<!-- 验证失败后的处理 -->
+		<beans:property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler"></beans:property>
+		<beans:property name="authenticationManager" ref="authenticationManager"></beans:property>
+	</beans:bean>
+
+
+	<beans:bean id="loginLogAuthenticationSuccessHandler" class="sys.springframework.security.LoginSuccessHandler">
+		<beans:property name="defaultBackTargetUrl" value="/admin/index.html"></beans:property>
+		<beans:property name="defaultFrontTargetUrl" value="/user/index.html"></beans:property>
+	</beans:bean>
+<!-- org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler -->
+	<beans:bean id="simpleUrlAuthenticationFailureHandler" class="sys.springframework.security.LoginFailureHandler">
+		<!-- 可以配置相应的跳转方式。属性forwardToDestination为true采用forward false为sendRedirect -->
+		<beans:property name="defaultBackTargetUrl" value="/admin/login.html"></beans:property>
+		<beans:property name="defaultFrontTargetUrl" value="/login.html"></beans:property>
+	</beans:bean>
+
+
+	<!-- 认证过滤器 -->
+	<beans:bean id="myFilter"
+		class="sys.springframework.security.MyFilterSecurityInterceptor">
+
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+
+		<beans:property name="accessDecisionManager" ref="myAccessDecisionManagerBean" />
+
+		<beans:property name="securityMetadataSource" ref="mySecurityMetadataSource" />
+	</beans:bean>
+
+	<!-- spring security提供的用户登录验证 ，alias的值对应上面的ref="authenticationManager" -->
+	<authentication-manager alias="authenticationManager">
+		<!--userDetailServiceImpl 获取登录的用户、用户权限 -->
+		<authentication-provider user-service-ref="userDetailServiceImpl" >
+			<password-encoder ref="encoder">
+<!-- 				<salt-source user-property="user_name" />   -->
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+
+	<!-- 获取登录的用户、用户权限 -->
+	<beans:bean id="userDetailServiceImpl" class="sys.springframework.security.MyUserDetailsService">
+<!-- 		<beans:property name="usersService" ref="usersService"></beans:property> -->
+	</beans:bean>
+
+	<!-- 判断是否有权限访问请求的url页面 -->
+
+	<beans:bean id="myAccessDecisionManagerBean"
+		class="sys.springframework.security.MyAccessDecisionManager">
+	</beans:bean>
+
+	<!-- 获取数据库中所有的url资源，读出url资源与权限的对应关系 -->
+
+	<beans:bean id="mySecurityMetadataSource" class="sys.springframework.security.MySecurityMetadataSource">
+	
+	</beans:bean>
+
+	<!-- 未登录的切入点 -->
+<!-- 	org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint -->
+	<beans:bean id="authenticationProcessingFilterEntryPoint" class="sys.springframework.security.LoginUrlEntryPoint">
+<!-- 		<beans:constructor-arg value="/login" /> -->
+
+		<beans:constructor-arg name="loginFormUrl" value="/login.html" type="java.lang.String"/>
+		<beans:property name="useForward" value="false"></beans:property>
+	</beans:bean>
+<!-- 	没有权限跳转的页面 -->
+	<beans:bean id="accessDeniedHandler" class="sys.springframework.security.MyAccessDeniedHandler">
+	  <beans:property name="errorPage" value="/user/index.html"></beans:property>
+	  <beans:property name="loginPage" value="/admin/login.html"></beans:property>  
+	</beans:bean>
+<!-- 	页面标签功能依赖 -->
+	<beans:bean id="webInvocatiobFilter" class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">
+	    <beans:constructor-arg ref="myFilter"/>
+	</beans:bean>
+<!-- 密码加密模式	 -->
+  <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"> 
+	<beans:constructor-arg name="strength" value="11" /> 
+  </beans:bean>
+  
+  
+<!--   session -->
+	<beans:bean id="concurrencyFilter" class="sys.springframework.security.ConcurrentSessionFilter">  
+	    <beans:constructor-arg name="sessionRegistry" ref="sessionRegistry" />  
+	    <beans:constructor-arg name="expiredUrl" value="/sessionTimeOut.jsp" />  
+	</beans:bean> 
+	<beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />  
+   
+	<beans:bean id="concurrentSessionControlStrategy"   class="org.springframework.security.web.authentication.session.ConcurrentSessionControlAuthenticationStrategy">  
+	    <beans:constructor-arg name="sessionRegistry" ref="sessionRegistry" />  
+	    <beans:property name="maximumSessions" value="1"></beans:property>  
+	</beans:bean>  
+<!--  前后台登出 -->
+  <beans:bean id="logoutFilter" class="sys.springframework.security.LogoutFilter">
+	<beans:constructor-arg name="frontLogoutSuccessUrl"
+		value="/login.html"></beans:constructor-arg>
+	<beans:constructor-arg name="backLogoutSuccessUrl"
+		value="/admin/login.html"></beans:constructor-arg>
+	<beans:constructor-arg>
+		<beans:list>
+			<beans:bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+				<beans:bean class="sys.springframework.security.LogoutSuccessHandler" />
+		</beans:list>
+	</beans:constructor-arg>
+	<beans:property name="filterProcessesUrl" value="/logout" />
+</beans:bean>
+</beans:beans>

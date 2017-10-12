@@ -1,0 +1,181 @@
+<div class="form-group row">
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">真实姓名</label>
+		</div>
+		<div class="col-md-9">
+			<input type="text" id="userFatherName"
+				name="userInfoList[1].userName" class="form-control "
+				placeholder="真实姓名" />
+			<p class="help-block"></p>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">性别</label>
+
+
+		</div>
+		<div class="col-md-9">
+			<!-- 												 <input type="text" name="userInfoList[1].userSex" -->
+			<!-- 														placeholder="性别" id="userSex" class="form-control "> -->
+
+			<label class="select"> <select class="form-control"
+				name="userInfoList[1].userSex" >
+					<option value="1" selected="selected" >男</option>
+					<option value="2" >女</option>
+					<option value="3" >未知</option>
+			</select>
+			</label>
+		</div>
+	</div>
+</div>
+
+
+<div class="form-group row">
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">出生年月</label>
+		</div>
+		<div class="col-md-9">
+			<input type="text" name="userInfoList[1].userBornDate" readonly="readonly"
+				placeholder="出生年月" id="full_name" class="form-control date-picker" data-date-format="yyyy-mm-dd"/>
+			<p class="help-block"></p>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">年龄</label>
+		</div>
+		<div class="col-md-9">
+			<input type="text" name="userInfoList[1].userAge"
+				placeholder="年龄" id="full_name" class="form-control ">
+		</div>
+	</div>
+
+</div>
+
+
+<div class="form-group row">
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">身份证</label>
+		</div>
+		<div class="col-md-9">
+			<input type="text" name="userInfoList[1].userIdentityCard"
+				placeholder="身份证" id="userIdentityCard"
+				class="form-control " />
+			<p class="help-block"></p>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">家庭住址</label>
+		</div>
+		<div class="col-md-9">
+			<input type="text" name="userInfoList[1].homeAddress"
+				placeholder="家庭住址" id="homeAddress" class="form-control ">
+		</div>
+	</div>
+
+</div>
+
+<div class="form-group row">
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">婚姻状况</label>
+		</div>
+		<div class="col-md-9">
+			<input type="text" name="userInfoList[1].maritalStatus"
+				placeholder="婚姻状况" id="maritalStatus" class="form-control ">
+			<p class="help-block"></p>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">配偶名称</label>
+		</div>
+		<div class="col-md-9">
+			<input type="text" name="userInfoList[1].spouseName"
+				placeholder="配偶名称" id="spouseName" class="form-control ">
+		</div>
+	</div>
+
+</div>
+
+<div class="form-group row">
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">QQ账号</label>
+		</div>
+		<div class="col-md-9">
+			<input type="text" name="userInfoList[1].userQq"
+				placeholder="QQ账号" id="userQq" class="form-control ">
+			<p class="help-block"></p>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">邮箱地址</label>
+		</div>
+		<div class="col-md-9">
+			<input type="text" name="userInfoList[1].userEmail"
+				placeholder="邮箱地址" id="userEmail" class="form-control ">
+		</div>
+	</div>
+
+</div>
+
+<div class="form-group row">
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">微信账号</label>
+		</div>
+		<div class="col-md-9">
+			<input type="text" name="userInfoList[1].userWeixin"
+				placeholder="微信账号" id="userWeixin" class="form-control ">
+			<p class="help-block"></p>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="col-md-3">
+			<label class="control-label">手机号码</label>
+		</div>
+		<div class="col-md-9">
+			<input type="text" name="userInfoList[1].userPhone"
+				placeholder="手机号码" id="userPhone" class="form-control ">
+		</div>
+	</div>
+</div>
+			<script type="text/javascript">
+				jQuery(function(){
+					$(".close").click(function(){
+						$(".message").hide();
+					})
+					$('.date-picker').datepicker({
+					    autoclose: true,
+					    language: 'zh-CN',
+					    autoclose: true,
+		                todayHighlight: true,
+		                format: "yyyy-mm-dd"
+					});
+					var userName=$('#userFatherName');
+					userName.autocomplete({
+						serviceUrl:url,
+						mustMatch: true,
+					    onSelect: function(suggestion) {
+					    	$("#userParentId").val(suggestion.data);
+					    	if($("#userParentId").val()!=suggestion.data){
+						    	$.ajax({
+						    		url:fatherPageUrl,
+						    		data:{"id":suggestion.data},
+						    		success:function(data){
+						    			$("#fatherBody").html(data);
+						    		}
+						    	})
+					    	}
+					    	
+					    },
+					})
+				})
+			</script>

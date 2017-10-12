@@ -1,0 +1,170 @@
+	<input type="hidden" id="userParentId" name="userInfoList[1].userInfoId" value="$!{USERFATHER.userInfoId}" />
+	<div class="form-group row">
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">真实姓名</label>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<input type="text" id="userFatherNameDouble"
+							name="userInfoList[1].userName" class="form-control "
+							placeholder="真实姓名"
+							value="$!{USERFATHER.userName}" readonly="readonly" />
+						<p class="help-block ">双击重置父亲信息</p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">性别</label>
+
+
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<label class="select"> 
+						<input type="text" 
+							 class="form-control " 
+							placeholder="性别"
+							value="#if(${USERFATHER.userSex}==1)男#end
+									#if(${USERFATHER.userSex}==2)女d#end
+									#if(${USERFATHER.userSex}==3)未知#end$" readonly="readonly" />
+						<input type="hidden" 
+							name="userInfoList[1].userSex" class="form-control " 
+							placeholder="性别"
+							value="#if(${USERFATHER.userSex}==1)1
+									#elseif(${USERFATHER.userSex}==2)2
+									#else3#end" readonly="readonly" />
+						</label>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="form-group row">
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">出生年月</label>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<input type="text" name="userInfoList[1].userBornDate" 
+						 class="form-control" 
+						value="$!{USERFATHER.userFatherBornDate}" readonly="readonly"/>
+						<p class="help-block"></p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">年龄</label>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<input type="text" name="userInfoList[1].userAge"
+							placeholder="年龄" id="full_name" class="form-control" readonly="readonly" />
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="form-group row">
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">身份证</label>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<input type="text" name="userInfoList[1].userIdentityCard"
+							placeholder="身份证" id="userIdentityCard"
+							class="form-control "
+							value="$!{USERFATHER.userIdentityCard}" readonly="readonly"/>
+						<p class="help-block"></p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">家庭住址</label>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<input type="text" name="userInfoList[1].homeAddress"
+							placeholder="家庭住址" id="homeAddress" class="form-control" readonly="readonly" />
+					</div>
+				</div>
+
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">婚姻状况</label>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<input type="text" name="userInfoList[1].maritalStatus"
+							placeholder="婚姻状况" id="maritalStatus" class="form-control" readonly="readonly"/>
+						<p class="help-block"></p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">配偶名称</label>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<input type="text" name="userInfoList[1].spouseName"
+							placeholder="配偶名称" id="spouseName" class="form-control " readonly="readonly"/>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">QQ账号</label>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<input type="text" name="userInfoList[1].userQq"
+							placeholder="QQ账号" id="userQq" class="form-control " readonly="readonly">
+						<p class="help-block"></p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">邮箱地址</label>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<input type="text" name="userInfoList[1].userEmail"
+							placeholder="邮箱地址" id="userEmail" class="form-control " readonly="readonly">
+					</div>
+				</div>
+
+			</div>
+
+			<div class="form-group row">
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">微信账号</label>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<input type="text" name="userInfoList[1].userWeixin"
+							placeholder="微信账号" id="userWeixin" class="form-control " readonly="readonly">
+						<p class="help-block"></p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="col-md-3">
+						<label class="control-label">手机号码</label>
+					</div>
+					<div class="col-md-7 col-sm-7 col-xs-7">
+						<input type="text" name="userInfoList[1].userPhone"
+							placeholder="手机号码" id="userPhone" class="form-control " readonly="readonly">
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+				var userFatherNameDouble=$('#userFatherNameDouble');
+				userFatherNameDouble.dblclick(function(){
+					$.ajax({
+				    		url:fatherPageUrl,
+				    		data:{"id":null},
+				    		success:function(data){
+				    			$("#fatherBody").html(data);
+				    			$("#userFatherName").focus();
+				    		}
+				    	})
+				})
+			</script>

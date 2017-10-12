@@ -1,0 +1,165 @@
+##功能模块添加
+<div class="row">
+	<div class="col-md-12">
+		<div id="add-new-function" class="modal modal-scroll" tabindex="-1" data-replace="true">
+        	<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        		<h4 class="modal-title">功能表单</h4>
+        	</div>
+			##模态框内容START
+			<div class="modal-body">
+            	<div class="portlet light bordered">
+					##表单标题START
+            		<div class="portlet-title">
+            			<div class="caption font-green-haze">
+            				<i class="icon-settings font-green-haze"></i>
+            				<span class="caption-subject bold uppercase">新增功能</span>
+            			</div>
+            			<div class="actions">
+<!--             				<a class="btn btn-circle btn-icon-only blue" href="javascript:;"> -->
+<!--             				<i class="icon-cloud-upload"></i> -->
+<!--             				</a> -->
+<!--             				<a class="btn btn-circle btn-icon-only green" href="javascript:;"> -->
+<!--             				<i class="icon-wrench"></i> -->
+<!--             				</a> -->
+<!--             				<a class="btn btn-circle btn-icon-only red" href="javascript:;"> -->
+<!--             				<i class="icon-trash"></i> -->
+<!--             				</a> -->
+<!--             				<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title=""> -->
+<!--             				</a> -->
+            			</div>
+            		</div>
+					##表单标题END
+					##表单内容START
+            		<div class="portlet-body form">
+            			<form role="form" class="function-add-new-form">
+            				<input type="hidden" name="functionId" value=" #if("$!{FUNCTIONINFO.functionName}"!="")$!{FUNCTIONINFO.functionId} #else 0#end" />
+            				<div class="form-body">
+        						<div class="form-group form-md-line-input form-md-floating-label has-success">
+        							<div >
+        								<div class="input-group">
+        									<input type="text" class="form-control #if("$!{FUNCTIONINFO.functionName}"!="")edited#end" name="functionName" id="functionName" value="$!{FUNCTIONINFO.functionName}"/>	
+        									<label for="form_control_1">功能名</label>
+        									<div class="form-control-focus">
+        									</div>	
+        									<span class="input-group-addon red">
+        										必填
+        									</span>																						
+        								</div>
+        							</div>
+        						</div>
+								<div class="form-group form-md-line-input  form-md-floating-label has-success">
+        							<div >
+        								<div class="input-group">
+        									<input type="text" class="form-control  #if("$!{FUNCTIONINFO.functionName}"!="")edited#end" name="functionUrl" id="functionUrl" value="$!{FUNCTIONINFO.functionUrl}"/>
+                							<label for="form_control_1">功能链接</label>
+        									<div class="form-control-focus">
+        									</div>	
+											<span class="input-group-addon red">
+        										
+        									</span>	
+                                        </div>
+                                    </div>
+            					</div>
+								<div class="form-group form-md-line-input form-md-floating-label has-success">
+        							<select class="form-control" id="functionParent" name="functionParent">
+        								#selectColumn("pub_function","function_id","function_name","")
+        							</select>
+        							<label for="form_control_1">所属父功能</label>
+        						</div>
+								<div class="form-group form-md-radios">
+									<label>是否按钮</label>
+									<div class="md-radio-inline">
+										<div class="md-radio">
+											<input type="radio" id="functionType1" name="functionType" class="md-radiobtn"  value="2"/>
+											<label for="functionType1">
+											<span></span>
+											<span class="check"></span>
+											<span class="box"></span>
+											是 </label>
+										</div>
+										<div class="md-radio">
+											<input type="radio" id="functionType2" name="functionType" class="md-radiobtn" checked="checked"  value="1"/>
+											<label for="functionType2">
+											<span></span>
+											<span class="check"></span>
+											<span class="box"></span>
+											否</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-md-radios">
+									<label>立即生效</label>
+									<div class="md-radio-inline">
+										<div class="md-radio">
+											<input type="radio" id="functionEnabled1" name="functionEnabled" class="md-radiobtn" checked="checked"  value="1">
+											<label for="functionEnabled1">
+											<span></span>
+											<span class="check"></span>
+											<span class="box"></span>
+											启用</label>
+										</div>
+										<div class="md-radio">
+											<input type="radio" id="functionEnabled2" name="functionEnabled" class="md-radiobtn"  value="0"/>
+											<label for="functionEnabled2">
+											<span></span>
+											<span class="check"></span>
+											<span class="box"></span>
+											禁用</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-md-line-input form-md-floating-label">
+            						<textarea class="form-control" rows="3" name="functionHtml"></textarea>
+            						<label for="form_control_1">按钮HTML</label>
+            					</div>
+								<div class="form-group form-md-radios">
+									<label>允许菜单</label>
+									<div class="md-radio-inline">
+										<div class="md-radio">
+											<input type="radio" id="functionMenu1" name="functionMenu" class="md-radiobtn"  value="1"/>
+											<label for="functionMenu1">
+											<span></span>
+											<span class="check"></span>
+											<span class="box"></span>
+											允许</label>
+										</div>
+										<div class="md-radio">
+											<input type="radio" id="functionMenu2" name="functionMenu" class="md-radiobtn" checked="checked" value="0"/>
+											<label for="functionMenu2">
+											<span></span>
+											<span class="check"></span>
+											<span class="box"></span>
+											不允许</label>
+										</div>
+									</div>
+								</div>
+        						<div class="form-group form-md-line-input form-md-floating-label">
+            						<textarea class="form-control" rows="3" name="functionDesc"></textarea>
+            						<label for="form_control_1">备注</label>
+            					</div>
+            				</div>
+            				<div class="form-actions">
+            					<div class="row">
+                            		<div class="col-md-offset-2 col-md-10">
+                            			<button type="button" data-dismiss="modal" class="btn btn-default">关闭</button>
+                            			<button type="submit" class="btn blue">提交</button>
+                        				<button type="reset"  class="btn gray">重置</button>
+                            		</div>
+                            	</div>
+            				</div>
+            			</form>
+    				</div>
+					##表单内容END
+					##表单页脚START
+                	##<div class="modal-footer">
+                		
+                	##</div>
+					##表单页脚END
+				</div>
+				
+			</div>
+			##模态框内容END
+		</div>
+	</div>
+</div>	

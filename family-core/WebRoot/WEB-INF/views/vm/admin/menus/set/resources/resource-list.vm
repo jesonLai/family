@@ -1,0 +1,106 @@
+##资源列表
+<div class="row">
+	<div class="col-md-12">
+		##资源信息块START
+        <div class="portlet box green-haze">
+			<div class="portlet-title">
+				<div class="caption">
+    				<i class="fa fa-globe"></i>资源列表
+    			</div>
+    			<div class="tools">
+    				<a href="javascript:;" class="reload">
+    				</a>
+    				<a href="javascript:;" class="remove">
+    				</a>
+    			</div>
+        	</div>
+				##列表信息START
+        		<div class="portlet-body">
+        			<div class="table-toolbar">
+            			<div class="row">
+                			<div class="col-md-6">
+                				<div class="btn-group">
+                    				<button class="btn green" data-target="#add-new-resource" data-toggle="modal">
+                                    		新增 <i class="fa fa-plus"></i>
+                                    </button>	
+                				</div>
+                			</div>
+                			<div class="col-md-6">
+                				
+                			</div>
+						</div>
+					</div>	
+					
+        			<table class="table table-striped table-bordered table-hover" id="sample_2">
+            			<thead>
+            				<tr role="row">
+                    			<th width="20%">
+                    				 权限编号
+                    			</th>
+                    			<th>
+                    				权限名称
+                    			</th>
+                    			<th class="numeric">
+                    				权限类型
+                    			</th>
+                    			<th class="numeric">
+                    				功能优先级
+                    			</th>
+                    			<th class="numeric">
+                    				 功能链接
+                    			</th>
+            					<th class="numeric">
+                    				 状态
+                    			</th>
+            					<th class="numeric">
+                    				是否超级管理员
+                    			</th>
+                    			<th class="numeric">
+                    				 备注
+                    			</th>
+                    		</tr>
+            			</thead>
+            			<tbody>
+            			#foreach( $RESOURCES in $RESOURCESLIST) 
+                           	<tr role="row" class="odd">
+                    			<td>
+                    				$!{RESOURCES.resourceId}
+                    			</td>
+                    			<td>
+                    				$!{RESOURCES.resourceName}
+                    			</td>
+                    			<td class="numeric">
+                    				$!{RESOURCES.resourceType}
+                    			</td>
+            					<td class="numeric">
+                    				$!{RESOURCES.resourcePriority}
+                    			</td>
+            					<td class="numeric">
+                    				$!{RESOURCES.resourceUrl}
+                    			</td>
+            					<td class="numeric">
+                    				$!{RESOURCES.resourceEnabled}
+                    			</td>
+            					<td class="numeric">
+                    				$!{RESOURCES.resource_isSys}
+                    			</td>
+            					<td class="numeric">
+                    				$!{RESOURCES.userDesc}
+                    			</td>
+            				</tr>
+                        #end 
+            			</tbody>
+            			</table>
+        		</div>
+				##列表信息END
+        	</div>
+			##资源信息块END
+	</div>
+</div>
+	##新增容器
+<div class="add-new-resource" >
+	#parse("menus/set/resources/resource-add.vm")
+</div>	
+##修改容器
+<div class="update-old-resource" >
+</div>

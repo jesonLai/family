@@ -1,0 +1,285 @@
+##新增用户style="cursor:crosshair"
+<div class="row">
+	<div class="col-md-12">
+		<div id="add-new-form" class="modal modal-scroll" tabindex="-1" data-replace="true">
+        	<div class="modal-header " >
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        		<h4 class="modal-title">用户表单</h4>
+        	</div>
+			##模态框内容START
+			<div class="modal-body">
+            	<div class="portlet light bordered">
+					##表单标题START
+            		<div class="portlet-title">
+            			<div class="caption font-green-haze">
+            				<i class="icon-settings font-green-haze"></i>
+            				<span class="caption-subject bold uppercase" id="user_title_table">家族成员信息</span>
+            			</div>
+            			<div class="actions">
+            			
+            				<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="javascript:;" data-original-title="" title="">
+            				</a>
+            			</div>
+            		</div>
+					##表单标题END
+					##表单内容START
+
+            		<div class="portlet-body form">
+            			<form role="form" class="user-add-new-form" action="menus/users/userAddNew" method="POST">
+							<input  type="hidden" name="token" value="$!{token}"/>
+            				#if("$!{USERINFO.userInfoId}"!="")
+            					<input type="hidden" name="userInfoId" id="userInfoId" value="$!{USERINFO.userInfoId}"/>
+            					<input type="hidden" name="headImage" id="headImage" value="$!{USERINFO.headImage}"/>
+            					
+            				#end
+            				<div class="form-body">
+            				<!--             				父亲start	 -->
+            					<div class="caption font-green-haze ">
+		            				<i class="icon-user font-green-haze"></i>
+		            				<span class="caption-subject bold uppercase">父亲信息</span>
+		            			</div>
+		            			<div class="row">
+	        						<div class="col-md-6">
+		        						<div class="form-group form-md-line-input form-md-floating-label has-success">
+											<input type="hidden" id="fatherName" name="fatherId" class="form-control select2" value="$!{USERINFO.userInfoId}"/>
+			            				</div>
+	            					</div>
+	            						<div class="col-md-6">
+			        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+			        							<input type="text" class="form-control" readonly="readonly" id="userFatherSpouseName" maxlength="25" value="$!{USERPARENTINFO.spouseName}"/>
+			        							<label for="form_control_1">配偶名称</label>
+			            					</div>
+	            						</div>
+	            					
+            					</div>
+            					<div class="row">
+	        						<div class="col-md-6">
+		        						<div class="form-group form-md-line-input form-md-floating-label has-success">
+													<input type="text" class="form-control"   id="userFatherBornDate" value="$!{USERPARENTINFO.userBornDate}">
+														<label for="form_control_1">出生年月</label>
+			            				</div>
+        							</div>
+	            					<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control" readonly="readonly" id="userFatherAge" maxlength="25" value="$!{USERPARENTINFO.userAge}">
+		        							<label for="form_control_1">年龄</label>
+		            					</div>
+            						</div>
+            					</div>
+   <!--             				父亲end -->
+   
+<!--    个人start -->
+								<div class="caption font-green-haze ">
+		            				<i class="icon-user font-green-haze"></i>
+		            				<span class="caption-subject bold uppercase">个人信息</span>
+		            			</div>
+        						<div class="row">
+	        						<div class="col-md-6">
+		        						<div class="form-group form-md-line-input form-md-floating-label has-success">
+			        						<div class="input-group">
+			        							<input type="text" class="form-control #if("$!{USERINFO.userName}"!="")edited #end" id="userName" name="userName" maxlength="40" value="$!{USERINFO.userName}" />
+			        							<label for="form_control_1">真实姓名</label>
+			        							<div class="form-control-focus">
+	        									</div>	
+	        									<span class="input-group-addon red">
+	        										必填
+	        									</span>		
+			            					</div>
+			            				</div>
+	            					</div>
+	            					<div class="col-md-6">
+		        						<div class="form-group form-md-line-input form-md-floating-label has-success">
+		        							<select class="form-control edited" id="form_control_1" name="userSex">
+		        								<option value="1" #if(${USERINFO.userSex}==1)selected#end>男</option>
+		        								<option value="2" #if(${USERINFO.userSex}==2)selected#end>女</option>
+		        								<option value="3" #if(${USERINFO.userSex}==3)selected#end>未知</option>
+		        							</select>
+		        							<label for="form_control_1">性别</label>
+		        						</div>
+        							</div>
+            					</div>
+            					<div class="row">
+        							<div class="col-md-6">
+		        						<div class="form-group form-md-line-input form-md-floating-label has-success">
+												<div class="input-group date date-picker" data-date-format="yyyy-mm-dd">
+													<input type="text" class="form-control"  name="userBronDate" value="$!{USERINFO.userBornDate}">
+														<label for="form_control_1">出生日期</label>
+													<span class="input-group-btn">
+													<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+													</span>
+												</div>
+			            				</div>
+			            			</div>
+        							<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.userAge}"!="")edited #end" id="form_control_1" name="userAge" maxlength="25" value="$!{USERINFO.userAge}">
+		        							<label for="form_control_1">年龄</label>
+<!-- 		        							<span class="help-block">请输入年龄</span> -->
+		            					</div>
+            						</div>
+            					</div>
+            					
+            					<div class="row">
+        							<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.userIdentityCard}"!="")edited #end" id="form_control_1" name="userIdentityCard" maxlength="25" value="$!{USERINFO.userIdentityCard}">
+		        							<label for="form_control_1">世代</label>
+<!-- 		        							<span class="help-block">请输入世代</span> -->
+		            					</div>
+            						</div>
+            						<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.tribalRegion}"!="")edited #end" id="form_control_1" name="tribalRegion" maxlength="100" value="$!{USERINFO.tribalRegion}"/>
+		        							<label for="form_control_1">宗族地区</label>
+		            					</div>
+            						</div>
+            					</div>
+            					
+            					
+            					
+            					<div class="row">
+	        							<div class="col-md-6">
+		        							<div class="form-group form-md-line-input form-md-floating-label has-success">
+				        							<select class="form-control edited" id="form_control_1" name="maritalStatus">
+				        								<option value="1" #if(${USERINFO.maritalStatus}==1)selected#end>未婚</option>
+				        								<option value="2" #if(${USERINFO.maritalStatus}==2)selected#end>已婚</option>
+				        							</select>
+				        							<label for="form_control_1">婚姻状况</label>
+				        						</div>
+		            					</div>
+	        							<div class="col-md-6">
+			        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+			        							<input type="text" class="form-control #if("$!{USERINFO.spouseName}"!="")edited #end" id="spouseName" name="spouseName" maxlength="25" value="$!{USERINFO.spouseName}"/>
+			        							<label for="form_control_1">配偶名称</label>
+			            					</div>
+	            						</div>
+            					</div>
+            					<div class="row">
+        							<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.userQq}"!="")edited #end" id="userQq" name="userQq" id="userQq" maxlength="25" value="$!{USERINFO.userQq}"/>
+		        							<label for="form_control_1">QQ账号</label>
+<!-- 		        							<span class="help-block">请输入QQ账号</span> -->
+		            					</div>
+		            				</div>
+        							<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.userEmail}"!="")edited #end"  name="userEmail" id="userEmail" maxlength="100" value="$!{USERINFO.userEmail}"/>
+		        							<label for="form_control_1">邮箱地址</label>
+<!-- 		        							<span class="help-block">请输入邮箱地址</span> -->
+		            					</div>
+            						</div>
+            					</div>
+            					<div class="row">
+        							<div class="col-md-6">
+		            					<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.userWeixin}"!="")edited #end"  name="userWeixin" id="userWeixin" maxlength="50" value="$!{USERINFO.userWeixin}"/>
+		        							<label for="form_control_1">微信账号</label>
+<!-- 		        							<span class="help-block">请输入微信账号</span> -->
+		            					</div>
+		            				</div>
+        							<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.userPhone}"!="")edited #end"  name="userPhone" id="userPhone" maxlength="15" value="$!{USERINFO.userPhone}"/>
+		        							<label for="form_control_1">手机号码</label>
+<!-- 		        							<span class="help-block">请输入手机号码</span> -->
+		            					</div>
+            						</div>
+            					</div>
+            					
+            					<div class="row">
+	            						<div class="col-md-12">
+			        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+			        							<input type="text" class="form-control #if("$!{USERINFO.homeAddress}"!="")edited #end" id="form_control_1" name="homeAddress" maxlength="25" value="$!{USERINFO.homeAddress}"/>
+			        							<label for="form_control_1">家庭住址</label>
+			            					</div>
+	            						</div>
+            					</div>
+        						<div class="form-group form-md-line-input form-md-floating-label has-success">
+            						<textarea class="form-control #if("$!{USERINFO.userDesc}"!="")edited #end" rows="3" name="userDesc" >$!{USERINFO.userDesc}</textarea>
+            						<label for="form_control_1">个人简介</label>
+<!--             						<span class="help-block">请输入备注信息</span> -->
+            					</div>
+            					
+<!--             		个人end			 -->
+
+   
+<!--             					<div class="caption font-green-haze "> -->
+<!-- 		            				<i class="icon-user font-green-haze"></i> -->
+<!-- 		            				<span class="caption-subject bold uppercase">登录账号</span> -->
+<!-- 		            			</div> -->
+<!-- 								<div class="form-group form-md-line-input form-md-floating-label has-success"> -->
+<!--            						<input type="text" class="form-control #if("$!{ACCOUNT.accoutType}"!="") edited #end" name="account" id="custom" maxlength="50"  -->
+<!--            						 value="$!{ACCOUNT.accout}" /> -->
+<!--            						<label for="form_control_1">自定义登录账号</label> -->
+<!--            					</div> -->
+<!--        						<div class="form-group form-md-line-input"> -->
+<!-- 									<label class="col-md-2 control-label" for="form_control_1">角色</label> -->
+<!-- 									<div class="col-md-10"> -->
+<!-- 										<div class="md-checkbox-inline"> -->
+<!-- 											<div class="md-checkbox"> -->
+<!-- 												<input type="checkbox" id="checkbox1" class="md-check" name="role" value="role_admin" -->
+<!-- 													#if("$!{ROLE.role_admin}"=="ROLE_ADMIN") checked #end/> -->
+<!-- 												<label for="checkbox1"> -->
+<!-- 												<span></span> -->
+<!-- 												<span class="check"></span> -->
+<!-- 												<span class="box"></span> -->
+<!-- 												管理员</label> -->
+<!-- 											</div> -->
+<!-- 											<div class="md-checkbox"> -->
+<!-- 												<input type="checkbox" id="checkbox2" class="md-check" name="role" value="role_vip"  -->
+<!-- 													#if("$!{ROLE.role_vip}"=="ROLE_VIP") checked #end/> -->
+<!-- 												<label for="checkbox2"> -->
+<!-- 												<span></span> -->
+<!-- 												<span class="check"></span> -->
+<!-- 												<span class="box"></span> -->
+<!-- 												会员 </label> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								<div class="row"> -->
+<!-- 									<div class="col-md-12"> -->
+<!-- 										<select id='custom-headers' multiple='multiple'> -->
+<!-- 											#getFamilyRole($!{USERS.uId}) -->
+<!-- 										</select> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+            				</div>
+            				
+           					
+            			<div class="form-actions">
+            				<div class="row">
+	                    		<div class="col-md-offset-2 col-md-10">
+	                    			<button type="button" data-dismiss="modal" class="btn btn-default">关闭</button>
+	                    			<button type="submit" class="btn blue " >提交</button>
+	                				<button type="reset"  class="btn gray">重置</button>
+	                    		</div>
+            				</div>
+            			</div>
+            			</form>
+    				</div>
+					##表单内容END
+					##表单页脚START
+                	##<div class="modal-footer">
+                		
+                    	##</div>
+                	</div>
+					##表单页脚END
+				</div>
+				
+			</div>
+			##模态框内容END
+		</div>
+	</div>
+<script type="text/javascript">
+<!--
+$('.date-picker').datepicker({
+    autoclose: true,
+});
+$('#custom-headers').multiSelect({
+	selectableHeader: "<div class='custom-header'>未有角色</div>",
+	selectionHeader: "<div class='custom-header'>拥有的角色</div>",
+});
+//-->
+</script>

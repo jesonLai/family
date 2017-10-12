@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+<!-- 输出到日志文件 每天一个日志  -->     
+    <appender name="filelog_daily" class="org.apache.log4j.DailyRollingFileAppender">        
+        <param name="File" value="log/daily.log" />        
+        <param name="DatePattern" value="'daily.'yyyy-MM-dd'.log'" />        
+        <layout class="org.apache.log4j.PatternLayout">        
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss/} %-5p] [%t] (%c:%L) - %m%n" />        
+        </layout>        
+    </appender>      
+<!-- 输出到控制台中 -->    
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss:SSS} %l %m%n" />
+		</layout> 
+<!-- 		限制输出级别 -->
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMax" value="ERROR" />
+			<param name="LevelMin" value="DEBUG" />
+		</filter>
+	</appender>
+	<appender name="FILE" class="org.apache.log4j.FileAppender">       
+        <param name="File" value="E:/activex.log" />         
+        <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />         
+        <layout class="org.apache.log4j.PatternLayout">       
+         <param name="ConversionPattern"         
+            value="[%d{MMdd HH:mm:ss SSS\} %-5p] [%t] %c{3\} - %m%n" />       
+        </layout>         
+    </appender>  
+<appender name="EMAIL_QQ" class="org.apache.log4j.net.SMTPAppender">     
+        <param name="Threshold" value="INFO"/>     
+        <param name="BufferSize" value="1" />     
+        <param name="SMTPHost" value="smtp.qq.com" />     
+        <param name="SMTPUsername" value="924102134" />     
+        <param name="SMTPPassword" value="Luck213845498qq" />     
+        <param name="From" value="924102134@qq.com" />     
+        <param name="To" value="laixinri@outlook.com" />     
+        <param name="Subject" value="测试邮件发送" />     
+        <param name="LocationInfo" value="true" />     
+        <param name="SMTPDebug" value="true" />     
+        <layout class="org.apache.log4j.PatternLayout">  
+
+		   <param name="ConversionPattern"    value="%-d{yyyy-MM-dd HH:mm:ss.SSS} [%p]-[%c] %m%n" />  
+		  </layout>    
+    </appender>     
+<!--- 异步测试，当日志达到缓存区大小时候执行所包的appender -->     
+    <appender name="ASYNC_test" class="org.apache.log4j.AsyncAppender">        
+     <param name="BufferSize" value="10"/>        
+     <appender-ref ref="EMAIL_QQ"/>     
+   </appender> 
+<!--      <category name="org.cjj" additivity="false">      -->
+               <!-- 日志输出级别，起码可以有5个级别，可以扩展自己的级别，邮件发送必须是ERROR级别不好用，所以最后自己扩展一个邮件发送级别 -->     
+<!--         <level value="ERROR" />    -->
+<!--         <level value="DEBUG" /> -->
+<!--          <level value="INFO" />      -->
+
+
+<!--         <priority value="debug" /> -->
+<!-- 		<appender-ref ref="CONSOLE" /> -->
+<!-- 		<appender-ref ref="FILE" /> -->
+<!-- 		<appender-ref ref="CONSOLE" /> -->
+<!-- 		<appender-ref ref="FILE" />   -->
+<!--         <appender-ref ref="ASYNC_test"/>      -->
+<!--  </category>  -->
+ <logger name="com.litt2.log4j" additivity="false">     
+        <level value="WARN" />     
+        <appender-ref ref="CONSOLE" />     
+    </logger>      
+       
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+		
+	</root>
+	     
+</log4j:configuration>

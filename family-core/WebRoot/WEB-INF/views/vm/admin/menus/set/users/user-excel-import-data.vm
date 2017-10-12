@@ -1,0 +1,22 @@
+##批量导入 #if('$!{eData.errorFlag}'!='')btn-danger#end title="$!{eData.errorFlag}"
+<div class="table-scrollable">
+<table class="table  table-bordered dataTable no-footer" id="usersTable">
+#foreach($eData in $EXCELDATA)
+	#if($velocityCount==1)
+		<thead> 
+			<tr class="row">
+			#foreach($data in $eData.excelData)
+			<th class="numeric">$data</th>
+			#end
+			</tr>
+		</thead>
+	#else
+		<tr class="row" >
+		#foreach($data in $eData.excelData)
+			<td class="numeric">$!{data}</td>
+		#end
+		</tr>	
+	#end
+#end
+</table>
+</div>

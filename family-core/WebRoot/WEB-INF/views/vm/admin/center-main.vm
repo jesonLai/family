@@ -1,0 +1,487 @@
+##主体内容
+#parse("admin/navigation-head.vm")
+<div class="row margin-top-20">
+	<div class="col-md-12">
+		<!-- BEGIN PROFILE SIDEBAR -->
+		<div class="profile-sidebar">
+			<!-- PORTLET MAIN -->
+			<div class="portlet light profile-sidebar-portlet">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+					#set($USERINFOPERSON=$session.getAttribute("USERINFOPERSON")) <img
+						src="#if(" $!{HEANDIMAGESRC}"=="")$!{req.contextPath}/monkey/global/img/default_avatar_male.jpg #else $!{req.contextPath}/$!{HEANDIMAGESRC} #end" class="img-responsive"
+						id="currHeadImg" alt=""
+						onerror="onerror=null;src='$!{req.contextPath}/monkey/global/img/default_avatar_male.jpg'" />
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						#set($urls=$session.getAttribute("SPRING_SECURITY_CONTEXT"))
+						$!{urls.authentication.principal.username}</div>
+					<div class="profile-usertitle-job">
+					#foreach($role in $session.getAttribute("userInfoContext").pubRoles)
+					$!{role.roleName}  
+					#end
+					
+					</div>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					<button type="button" class="btn btn-circle green-haze btn-sm"
+						id="upload_img">上传头像</button>
+					<button type="button" class="btn btn-circle btn-danger btn-sm"
+						id="update_password">修改密码</button>
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<!-- 								<ul class="nav"> -->
+					<!-- 									<li class="active"> -->
+					<!-- 										<a href="extra_profile.html"> -->
+					<!-- 										<i class="icon-home"></i> -->
+					<!-- 										主页 </a> -->
+					<!-- 									</li> -->
+					<!-- 									<li> -->
+					<!-- 										<a href="extra_profile_account.html"> -->
+					<!-- 										<i class="icon-settings"></i> -->
+					<!-- 										账户设置 </a> -->
+					<!-- 									</li> -->
+					<!-- 									<li> -->
+					<!-- 										<a href="page_todo.html" target="_blank"> -->
+					<!-- 										<i class="icon-check"></i> -->
+					<!-- 										任务 </a> -->
+					<!-- 									</li> -->
+					<!-- 									<li> -->
+					<!-- 										<a href="extra_profile_help.html"> -->
+					<!-- 										<i class="icon-info"></i> -->
+					<!-- 										帮助 </a> -->
+					<!-- 									</li> -->
+					<!-- 								</ul> -->
+
+				</div>
+				<!-- END MENU -->
+
+			</div>
+			#set($arr = $!{urls.authentication.principal.Authorities})
+					#set($bl=false)
+					#foreach($item in $arr)
+						#if($item=="ROLE_SYSTEM")
+							#set($bl=true)
+						#end
+					#end
+			#if($bl)
+			<div class="portlet light">
+				<form role="form" class="setting-email" action="#" method="POST">
+					<div class="row">
+						<div class="col-md-12">
+							<div
+								class="form-group form-md-line-input  form-md-floating-label has-success">
+								<input type="text"
+								 class="form-control #if("$!{SENDEREMAIL.host}"!="" )edited #end" id="host"
+												name="host" value="$!{SENDEREMAIL.host}"/>
+								<label for="form_control_1">服务器地址</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div
+								class="form-group form-md-line-input  form-md-floating-label has-success">
+								<input type="text" class="form-control #if("$!{SENDEREMAIL.protocol}"!="" )edited #end" id="protocol"
+												name="protocol" value="$!{SENDEREMAIL.protocol}">  <label for="form_control_1">协议</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div
+								class="form-group form-md-line-input  form-md-floating-label has-success">
+								<input type="text" class="form-control #if("$!{SENDEREMAIL.port}"!="" )edited #end" class="form-control " id="port"
+												name="port" value="$!{SENDEREMAIL.port}">
+								<label for="form_control_1">端口</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div
+								class="form-group form-md-line-input  form-md-floating-label has-success">
+								<input type="text" class="form-control #if("$!{SENDEREMAIL.from}"!="" )edited #end" id="from"
+												name="from" value="$!{SENDEREMAIL.from}" autocomplete="off" value="" />
+								<label for="form_control_1">账号</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div
+								class="form-group form-md-line-input  form-md-floating-label has-success">
+								<input type="text" class="form-control #if("$!{SENDEREMAIL.pwd}"!="" )edited #end" id="pwd"
+												name="pwd" value="$!{SENDEREMAIL.pwd}" onfocus="this.type='password'" autocomplete="off" value=""/>
+								<label for="form_control_1">密码</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-2 col-md-10">
+								<button type="submit" class="btn btn-circle blue btn-md">提交</button>
+								<button type="button" class="btn btn-circle blue btn-md" onclick="PERSONS.showTestEmail()">测试</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+#end
+
+		</div>
+		<div class="profile-content">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet light">
+						<div class="portlet-title tabbable-line">
+							<div class="caption caption-md">
+								<i class="icon-globe theme-font hide"></i> <span
+									class="caption-subject font-blue-madison bold uppercase">个人账户</span>
+							</div>
+							<ul class="nav nav-tabs head-ul" >
+								<li class="active"><a href="#tab_1_1" data-toggle="tab">个人信息</a>
+								</li>
+								<li><a href="#tab_1_2" data-toggle="tab">头像修改</a></li>
+								<li><a href="#tab_1_3" data-toggle="tab">修改密码</a></li>
+								<li><a href="#tab_1_4" data-toggle="tab">父亲信息</a></li>
+							</ul>
+						</div>
+						<div class="portlet-body">
+							<div class="tab-content" id="person_tab">
+								<!-- PERSONAL INFO TAB menus/users/userAddNew-->
+								<div class="tab-pane active" id="tab_1_1">
+									<form role="form" class="user-add-new-form" action="#"
+										method="POST">
+										<div class="row">
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control " id="userName"
+														name="userName" maxlength="40"
+														value="$!{USERINFOPERSON.userName}" /> <label
+														for="form_control_1">真实姓名</label>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control " id="userName"
+														name="userName"
+														value="#if(${USERINFOPERSON.userSex}==1) 男 #end
+															#if(${USERINFOPERSON.userSex}==2) 女#end
+															#if(${USERINFOPERSON.userSex}==3) 未知#end" />
+													<label for="form_control_1">性别</label>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input form-md-floating-label has-success">
+													<input type="text" class="form-control "
+														id="form_control_1" name="userAge" maxlength="25"
+														value="$!{USERINFOPERSON.userBornDate}" /> <label
+														for="form_control_1">出生日期</label>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control "
+														id="form_control_1" name="userAge" maxlength="25"
+														value="$!{USERINFOPERSON.userAge}"> <label
+														for="form_control_1">年龄</label>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control "
+														id="form_control_1" name="userIdentityCard" maxlength="25"
+														value="$!{USERINFOPERSON.userIdentityCard}"> <label
+														for="form_control_1">世代</label>
+													<!-- 		        							<span class="help-block">请输入身份证号码</span> -->
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control" id="form_control_1"
+														name="homeAddress" maxlength="25"
+														value="$!{USERINFOPERSON.homeAddress}" /> <label
+														for="form_control_1">家庭住址</label>
+												</div>
+											</div>
+										</div>
+
+
+
+										<div class="row">
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control " id="spouseName"
+														value="#if(${USERINFOPERSON.maritalStatus}==1)未婚#end #if(${USERINFOPERSON.maritalStatus}==2)已婚#end" />
+													<label for="form_control_1">婚姻状况</label>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control " id="spouseName"
+														name="spouseName" maxlength="25"
+														value="$!{USERINFOPERSON.spouseName}" /> <label
+														for="form_control_1">配偶名称</label>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control" id="userQq"
+														name="userQq" id="userQq" maxlength="25"
+														value="$!{USERINFOPERSON.userQq}" /> <label
+														for="form_control_1">QQ账号</label>
+													<!-- 		        							<span class="help-block">请输入QQ账号</span> -->
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control" name="userEmail"
+														id="userEmail" maxlength="100"
+														value="$!{USERINFOPERSON.userEmail}" /> <label
+														for="form_control_1">邮箱地址</label>
+													<!-- 		        							<span class="help-block">请输入邮箱地址</span> -->
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control " name="userWeixin"
+														id="userWeixin" maxlength="50"
+														value="$!{USERINFOPERSON.userWeixin}" /> <label
+														for="form_control_1">微信账号</label>
+													<!-- 		        							<span class="help-block">请输入微信账号</span> -->
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control #if("$!{USERINFOPERSON.userPhone}"!="")edited #end" name="userPhone"
+														id="userPhone" maxlength="15"
+														value="$!{USERINFOPERSON.userPhone}" /> <label
+														for="form_control_1">手机号码</label>
+													<!-- 		        							<span class="help-block">请输入手机号码</span> -->
+												</div>
+											</div>
+										</div>
+										<div class="form-group form-md-line-input form-md-floating-label has-success">
+											<div style="display: none" id="divContent">$!{USERINFOPERSON.userDesc}</div>
+											<textarea class="form-control #if("$!{USERINFOPERSON.userDesc}"!="")edited #end" rows="3" name="userDesc"></textarea>
+											<label for="form_control_1">个人简介</label>
+											<!--             						<span class="help-block">请输入备注信息</span> -->
+										</div>
+										
+									</form>
+								</div>
+								<!-- END PERSONAL INFO TAB -->
+								<!-- CHANGE AVATAR TAB -->
+								<div class="tab-pane" id="tab_1_2">
+									<form  action="#" method="post" enctype="multipart/form-data" id="headImageForm">
+										<input type="hidden" id="headImageName" name="headImageName" value="$!{USERINFOPERSON.headImageName}"/>
+										<input type="hidden" id="headImageFolder" name="headImageFolder" value="$!{USERINFOPERSON.headImageFolder}"/>
+										<div class="form-group last" style="height: 200px">
+											<div class="col-md-12">
+												<div class="fileinput fileinput-new" data-provides="fileinput">
+													<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+														<img src="#if("$!{HEANDIMAGESRC}"=="")$!{req.contextPath}/monkey/global/img/default_avatar_male.jpg #else $!{req.contextPath}/$!{HEANDIMAGESRC} #end" alt="头像" id="hImg" onerror="onerror=null;src='$!{req.contextPath}/monkey/global/img/default_avatar_male.jpg'"/>
+													</div>
+													<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+													</div>
+													<div>
+														<span class="btn default btn-file">
+														<span class="fileinput-new">
+														选择图片</span>
+														<span class="fileinput-exists">
+														重新选择 </span>
+														<input type="file" name="...">
+														</span>
+														<button type="button" class="btn green-haze fileinput-exists" data-dismiss="fileinput" onClick="PERSONS.headImg()">
+														上传 </button>
+														<a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput">
+														移除 </a>
+													</div>
+												</div>
+												
+											</div>
+										</div>
+									</form>
+<!-- 									<div id="kv-avatar-errors" class="center-block" -->
+<!-- 										style="width: 800px; display: none"></div> -->
+<!-- 									<form class="text-center" action="#" method="post" enctype="multipart/form-data"> -->
+<!-- 										<div class="kv-avatar center-block"> -->
+<!-- 											<input id="avatar" name="avatar" type="file" -->
+<!-- 												class="file-loading"> -->
+<!-- 										</div> -->
+<!-- 									</form> -->
+									
+									
+								</div>
+								<!-- END CHANGE AVATAR TAB -->
+								<!-- CHANGE PASSWORD TAB -->
+								<div class="tab-pane" id="tab_1_3">
+									<form action="" method="POST" id="updatePWD">
+										<div class="row">
+											<div class="col-md-12">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="password" class="form-control" id="oldPwd"
+														name="oldPwd" maxlength="25" /> <label
+														for="form_control_1">旧密码</label>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="password" class="form-control " id="newOnePwd"
+														name="newOnePwd" maxlength="25" /> <label
+														for="form_control_1">新密码</label>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="password" class="form-control " id="newTowPwd"
+														name="newTowPwd" maxlength="25" /> <label
+														for="form_control_1">确认密码</label>
+												</div>
+											</div>
+										</div>
+										<div class="margin-top-10">
+											<button type="submit" class="btn green-haze">提交</button>
+										</div>
+									</form>
+								</div>
+								<!-- END CHANGE PASSWORD TAB -->
+								#set($father=$!{USERINFOPERSON.fatherUserInfo})
+								<div class="tab-pane" id="tab_1_4">
+									<form role="form" class="user-add-new-form" action="#"
+										method="POST">
+										<div class="row">
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control"
+														value="$!{father.userName}" /> <label
+														for="form_control_1">父亲名称</label>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control"
+														id="userFatherSpouseName" maxlength="25"
+														value="$!{father.spouseName}" /> <label
+														for="form_control_1">配偶名称</label>
+												</div>
+											</div>
+
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input form-md-floating-label has-success">
+													<input type="text" class="form-control"
+														id="userFatherBornDate"
+														value="$!{father.userFatherBornDate}"> <label
+														for="form_control_1">出生年月</label>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div
+													class="form-group form-md-line-input  form-md-floating-label has-success">
+													<input type="text" class="form-control" id="userFatherAge"
+														maxlength="25" value="$!{father.userFatherAge}"> <label
+														for="form_control_1">年龄</label>
+												</div>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END PAGE CONTENT-->
+	</div>
+</div>
+
+<div>
+		<div id="email-test" class="modal modal-scroll" tabindex="-1" data-replace="true">
+        	<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        		<h4 class="modal-title">邮箱有效性验证<small>*有可能会进入垃圾箱</small></h4>
+        	</div>
+			##模态框内容START
+		<div class="modal-body">
+			<form action="" method="POST" id="emailForm" name="emailForm">
+				<div class="row">
+					<div class="col-md-12">
+						<div
+							class="form-group form-md-line-input  form-md-floating-label has-success">
+							<input type="text" class="form-control" id="email"
+								name="email" maxlength="25" /> <label for="form_control_1">收件邮箱</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div
+							class="form-group form-md-line-input  form-md-floating-label has-success">
+							<input type="text" class="form-control" id="title"
+								name="title" maxlength="25" /> <label for="form_control_1">标题</label>
+						</div>
+					</div>
+				</div>
+			
+				<div class="row">
+					<div class="col-md-12">
+						<div
+							class="form-group form-md-line-input  form-md-floating-label has-success">
+							<textarea class="form-control " rows="3" name="content" ></textarea>
+							<label for="form_control_1">内容</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-2 col-md-10">
+								<button type="submit" class="btn btn-circle blue btn-md">测试</button>
+							</div>
+						</div>
+					</div>
+			</form>
+		</div>
+	</div>
+</div>

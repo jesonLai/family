@@ -1,0 +1,62 @@
+#parse("admin/navigation-head.vm")
+<script type="text/javascript">
+$(document).ready(function()
+  {
+	 $(".img-list").hover(function(){
+    $(this).find("#box").animate({height:"30px"});
+  },function(){
+    $(this).find("#box").animate({height:"0px"});
+  
+  });
+});
+</script>
+<form role="form" class="advertisement-form"  method="POST" enctype="multipart/form-data" onSubmit="return false;">
+				<div class="row">
+						<div class="col-md-12">
+    						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+    							<input type="text" class="form-control" id="href" name="href" >
+    							<label for="form_control_1">图片URL</label>
+        					</div>
+						</div>
+					</div>
+		            			<div class="form-group last">
+										<div class="col-md-12">
+											<div class="fileinput fileinput-new" data-provides="fileinput">
+												<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+													<img src="$!{req.contextPath}/front/image/zongzu.png" alt=""/>
+												</div>
+												<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+												</div>
+												<div>
+													<span class="btn default btn-file">
+													<span class="fileinput-new">
+													选择图片 </span>
+													<span class="fileinput-exists">
+													重新选择 </span>
+													<input type="file" name="...">
+													</span>
+													<button type="button" class="btn green-haze fileinput-exists" data-dismiss="fileinput" onClick="javascript:$('.advertisement-form').submit();">
+														上传 </button>
+													<a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput">
+													移除 </a>
+												</div>
+											</div>
+											
+										</div>
+									</div>
+									
+		            		
+		            		
+</form>		
+
+#foreach($img in ${NAVIGATION})
+<div class="img-list" style="position:relative;width:200px;height:150px;margin:20px;overflow:hidden;float:left">
+    <img src="$!{req.contextPath}/${img.httpUrl}" style="width: 100%;height: 100%" onerror="onerror=null;src='$!{req.contextPath}/front/image/zongzu.png'">
+    <div id="box" style="position:absolute;height:0px;width:100%;bottom:0px;">
+		<button class="btn green" style="width:100%;bottom:0px;margin-bottom:0px;" onClick="advertisement.remove('$!{img.id}')">
+							移除<i class="fa fa-remove"></i>
+						</button>
+    </div>
+</div>
+
+#end							

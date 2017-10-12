@@ -1,0 +1,15 @@
+##公告
+<div class="row">
+    <div class="col-md-12">
+		#parse("admin/menus/set/announcement/announcement-list.vm")
+    </div>
+</div>
+<script type="text/javascript" >
+<!-- 
+	jQuery(function($){
+	    $.getScript("$!{req.contextPath}/monkey/vm/menus/set/announcement/announcement.js", function( data, textStatus, jqxhr ) {
+	    	announcement.init();
+	    });
+	});
+//-->
+</script>	

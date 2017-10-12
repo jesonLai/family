@@ -1,0 +1,20 @@
+##主体菜单
+<div class="page-sidebar navbar-collapse collapse">
+			<!-- BEGIN SIDEBAR MENU -->
+			<ul class="page-sidebar-menu menu-controller page-sidebar-menu-light" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" >
+				<li class="sidebar-toggler-wrapper">
+					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+					<div class="sidebar-toggler">
+					</div>
+				</li>
+				<!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+				<li class="sidebar-search-wrapper"></li>
+				<li class="heading">
+					<h3 class="uppercase">前台控制
+					</h3>
+				</li>
+				#getFamilyMenus()
+			</ul>
+			<!-- END SIDEBAR MENU -->
+		</div>
+###<script type="text/javascript" src="#springUrl('/monkey/vm/center-menu.js')"></script>

@@ -1,0 +1,34 @@
+##菜单列表
+<div class="portlet box green-haze users-list">
+	<div class="portlet-title">
+		<div class="caption">
+			<i class="fa fa-globe"></i>菜单列表
+		</div>
+		<div class="tools">
+			<a href="javascript:;" onclick="MENUITEM.init(0)" class="reload"> </a>
+			<a href="javascript:;" class="fullscreen" ></a>
+		</div>
+	</div>
+	<div class="portlet-body">
+	<div class="table-toolbar">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="btn-group">
+    				<button class="btn green" onclick="MENUITEM.editor()">
+                    		新增 <i class="fa fa-plus"></i>
+                    </button>	
+                 </div>
+             </div>
+          </div>
+     </div>
+<!-- 			table-striped -->
+			<table class="table  table-bordered table-hover"
+				id="menuItemTable">
+			</table>
+		</div>
+	</div>
+</div>
+<div class="add-new-menuItem" >
+	###parse("admin/menus/set/menu/menuItem-add.vm")
+</div>
+##<div class="add-ROLES-list" ></div>	

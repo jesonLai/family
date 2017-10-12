@@ -1,0 +1,14 @@
+##数据字典
+<div class="row">
+    <div class="col-md-12">
+		#parse("menus/set/codes/code-list.vm")
+    </div>
+</div>
+<script type="text/javascript">
+ jQuery(function($){
+    $.getScript( "$!{req.contextPath}/monkey/vm/menus/set/codes/code.js", function( data, textStatus, jqxhr ) {
+		TableAdvanced.init();
+    	 codes.init();
+    });
+});
+</script>

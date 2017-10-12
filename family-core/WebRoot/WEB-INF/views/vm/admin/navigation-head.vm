@@ -1,0 +1,10 @@
+##内容头部导航
+#set($MENUFORM=$session.getAttribute("MENUFORM"))
+<div class="page-bar">
+	<ul class="page-breadcrumb">
+		<li><i class="fa fa-home"></i> <a href="$!{req.contextPath}/admin/index.html">主页</a> <i
+			class="fa fa-angle-right"></i></li>
+		<li><a href=" #if("$!{MENUFORM.refershAction}"!="")javascript:$!{MENUFORM.refershAction} 
+				#else javascript:Menu.refresh_menu_content('$!{MENUFORM.action}')#end">$!{MENUFORM.menuName}</a></li>
+	</ul>
+</div>

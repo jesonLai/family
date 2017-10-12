@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+	version="2.1">
+	<!-- 定义版本 -->
+	<tlib-version>1.0</tlib-version>
+	<!-- 定义名字 -->
+	<short-name>mytag</short-name>
+	<!-- 定义uri -->
+	<uri>token</uri>
+	
+	<tag>
+		<name>tokenTag</name>
+		<tag-class>com.ssoft.store.web.interceptor.TokenTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	
+</taglib>

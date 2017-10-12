@@ -1,0 +1,364 @@
+<!-- 注册审核 -->
+##注册审核
+#set($USERCHILD=$!{USERINFOREGISTERREAL.userChild})
+#set($USERPARENT=$!{USERINFOREGISTERREAL.userParent})
+<div class="row">
+	<div class="col-md-12">
+		<div id="register-check-form" class="modal modal-scroll" tabindex="-1"
+			data-replace="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true"></button>
+				<h4 class="modal-title">实名认证表单</h4>
+			</div>
+			##模态框内容START
+			<div class="modal-body">
+				<div class="portlet light bordered">
+					##表单标题START
+					<div class="portlet-title">
+						<div class="caption font-green-haze">
+							<i class="icon-user font-green-haze"></i> <span
+								class="caption-subject bold uppercase" id="user_title_table">个人信息</span>
+						</div>
+						<div class="actions">
+							<div class="btn-group btn-group-devided" data-toggle="buttons">
+										<button type="button" class="btn blue btn-circle" onclick="javascript:$('.check-user_info').submit();">审核通过</button>
+										<button type="button" class="btn blue btn-circle"
+											onclick="register.notCheck()">审核不通过</button>
+							</div>
+							<a class="btn btn-circle btn-icon-only btn-default fullscreen"
+								href="javascript:;" data-original-title="" title=""> </a>
+								
+						</div>
+					</div>
+					##表单标题END ##表单内容START
+
+					<div class="portlet-body form">
+						<form role="form" class="check-user_info"
+							action="menus/users/userAddNew" method="POST">
+							#if("$!{USERCHILD.userInfoId}"!="") 
+								<input type="hidden" name="userInfoList[0].userInfoId" id="userInfoId" value="$!{USERCHILD.userInfoId}" /> 
+							#end
+							<div class="form-body">
+								<div class="row">
+									<div class="col-md-6">
+										<div
+											class="form-group form-md-line-input form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERCHILD.userName}"!="" )edited #end" id="userName"
+												maxlength="40" value="$!{USERCHILD.userName}"  name="userInfoList[0].userName"/> <label
+												for="form_control_1">真实姓名</label>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group form-md-line-input form-md-floating-label has-success">
+		        							<select class="form-control edited" id="userSex" name="userInfoList[0].userSex">
+		        								<option value="1" #if(${USERCHILD.userSex}==1)selected#end>男</option>
+		        								<option value="2" #if(${USERCHILD.userSex}==2)selected#end>女</option>
+		        								<option value="3" #if(${USERCHILD.userSex}==3)selected#end>未知</option>
+		        							</select>
+		        							<label for="form_control_1">性别</label>
+		        						</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group form-md-line-input form-md-floating-label has-success">
+												<div class="input-group date date-picker" data-date-format="yyyy-mm-dd">
+													<input type="text" class="form-control" readonly=readonly name="userInfoList[0].userBornDate" value="$!{USERCHILD.userBornDate}">
+														<label for="form_control_1">出生日期</label>
+													<span class="input-group-btn">
+													<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+													</span>
+												</div>
+										</div>
+										
+										
+									</div>
+									<div class="col-md-6">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERCHILD.userAge}"!="" )edited #end" id="form_control_1"
+												maxlength="25" value="$!{USERCHILD.userAge}" name="userInfoList[0].userAge"/> <label
+												for="form_control_1">年龄</label>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERCHILD.userIdentityCard}"!=""
+												)edited #end" id="form_control_1" maxlength="25"
+												value="$!{USERCHILD.userIdentityCard}" name="userInfoList[0].userIdentityCard"> <label
+												for="form_control_1">身份证号码</label>
+											
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERCHILD.homeAddress}"!="")edited #end" id="form_control_1" maxlength="25"
+												value="$!{USERCHILD.homeAddress}" name="userInfoList[0].homeAddress"/> <label
+												for="form_control_1">家庭住址</label>
+										</div>
+									</div>
+								</div>
+
+
+
+								<div class="row">
+									<div class="col-md-6">
+										<div
+											class="form-group form-md-line-input form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERINFO.maritalStatus}"!="")edited #end" id="form_control_1"
+												value="$!{USERINFO.maritalStatus}" name="userInfoList[0].maritalStatus"/> <label
+												for="form_control_1">婚姻状况</label>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERCHILD.spouseName}"!="" )edited #end" id="spouseName"
+												maxlength="25" value="$!{USERCHILD.spouseName}" name="userInfoList[0].spouseName"/> <label
+												for="form_control_1">配偶名称</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERCHILD.userQq}"!="" )edited #end" id="userQq"
+												id="userQq" maxlength="25" value="$!{USERCHILD.userQq}" name="userInfoList[0].userQq"/>
+											<label for="form_control_1">QQ账号</label>
+											<!-- 		        							<span class="help-block">请输入QQ账号</span> -->
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERCHILD.userEmail}"!="" )edited #end"  id="userEmail"
+												maxlength="100" value="$!{USERCHILD.userEmail}" name="userInfoList[0].userEmail"/> <label
+												for="form_control_1">邮箱地址</label>
+											<!-- 		        							<span class="help-block">请输入邮箱地址</span> -->
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERCHILD.userWeixin}"!="")edited #end"   id="userWeixin" maxlength="50"
+												value="$!{USERCHILD.userWeixin}" name="userInfoList[0].userWeixin"/> <label
+												for="form_control_1">微信账号</label>
+											<!-- 		        							<span class="help-block">请输入微信账号</span> -->
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERCHILD.userPhone}"!="" )edited #end"  id="userPhone"
+												maxlength="15" value="$!{USERCHILD.userPhone}" name="userInfoList[0].userPhone"/> <label
+												for="form_control_1">手机号码</label>
+											<!-- 		        							<span class="help-block">请输入手机号码</span> -->
+										</div>
+									</div>
+								</div>
+								<div
+									class="form-group form-md-line-input form-md-floating-label has-success">
+									<textarea class="form-control #if("$!{USERCHILD.userDesc}"!="")edited #end" rows="3" name="userInfoList[0].userDesc">$!{USERCHILD.userDesc}</textarea>
+									<label for="form_control_1">个人简介</label>
+									<!--             						<span class="help-block">请输入备注信息</span> -->
+								</div>
+
+
+								<!--             				父亲start	 -->
+								<div class="caption font-green-haze light line">
+									<i class="icon-user font-green-haze"></i> <span
+										class="caption-subject bold uppercase">提交的父亲信息</span>
+								</div>
+								#if("$!{USERPARENT.userInfoId}"!="") 
+								<input type="hidden" name="userInfoList[1].userInfoId" id="userInfoId" value="$!{USERPARENT.userInfoId}" /> 
+							#end
+								<hr class=" light ">
+								<div class="row">
+									<div class="col-md-6">
+										<div
+											class="form-group form-md-line-input form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERPARENT.userName}"!="" )edited #end"  id="userName"
+												maxlength="25" value="$!{USERPARENT.userName}" name="userInfoList[1].userName"/> <label
+												for="form_control_1">父亲名称</label>
+										</div>
+									</div>
+									<div class="col-md-6">
+		        						<div class="form-group form-md-line-input form-md-floating-label has-success">
+		        							<select class="form-control edited" id="form_control_1" name="userInfoList[1].userSex">
+		        								<option value="1" #if(${USERINFO.userSex}==1)selected#end>男</option>
+		        							</select>
+		        							<label for="form_control_1">性别</label>
+		        						</div>
+        							</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group form-md-line-input form-md-floating-label has-success">
+											<div class="input-group date date-picker" data-date-format="yyyy-mm-dd">
+												<input type="text" class="form-control" readonly=readonly name="userInfoList[1].userBornDate" value="$!{USERPARENT.userBornDate}">
+													<label for="form_control_1">出生日期</label>
+												<span class="input-group-btn">
+												<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control #if("$!{USERPARENT.userAge}"!="" )edited #end" id="userFatherAge"
+												maxlength="25" value="$!{USERPARENT.userAge}" name="userInfoList[1].userAge"> <label
+												for="form_control_1">年龄</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+        							<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.userIdentityCard}"!="")edited #end" id="form_control_1" name="userIdentityCard" maxlength="25" value="$!{USERINFO.userIdentityCard}">
+		        							<label for="form_control_1">身份证号码</label>
+<!-- 		        							<span class="help-block">请输入身份证号码</span> -->
+		            					</div>
+            						</div>
+            						<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.tribalRegion}"!="")edited #end" id="form_control_1" name="tribalRegion" maxlength="100" value="$!{USERINFO.tribalRegion}"/>
+		        							<label for="form_control_1">宗族地区</label>
+		            					</div>
+            						</div>
+            					</div>
+            					<div class="row">
+	        							<div class="col-md-6">
+		        							<div class="form-group form-md-line-input form-md-floating-label has-success">
+				        							<select class="form-control edited" id="form_control_1" name="userInfoList[1].maritalStatus">
+				        								<option value="2" selected="selected">已婚</option>
+				        							</select>
+				        							<label for="form_control_1">婚姻状况</label>
+				        						</div>
+		            					</div>
+	        							<div class="col-md-6">
+											<div class="form-group form-md-line-input  form-md-floating-label has-success">
+												<input type="text" class="form-control #if("$!{USERPARENT.spouseName}"!="")edited #end" id="userFatherSpouseName" maxlength="25"
+													value="$!{USERPARENT.spouseName}" name="userInfoList[1].spouseName"/> <label
+													for="form_control_1">配偶名称</label>
+											</div>
+									</div>
+            					</div>
+            					<div class="row">
+        							<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.userQq}"!="")edited #end" id="userQq"  name="userInfoList[1].userQq" id="userQq" maxlength="25" value="$!{USERINFO.userQq}"/>
+		        							<label for="form_control_1">QQ账号</label>
+<!-- 		        							<span class="help-block">请输入QQ账号</span> -->
+		            					</div>
+		            				</div>
+        							<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.userEmail}"!="")edited #end"  name="userInfoList[1].userEmail" id="userEmail" maxlength="100" value="$!{USERINFO.userEmail}"/>
+		        							<label for="form_control_1">邮箱地址</label>
+<!-- 		        							<span class="help-block">请输入邮箱地址</span> -->
+		            					</div>
+            						</div>
+            					</div>
+            					<div class="row">
+        							<div class="col-md-6">
+		            					<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.userWeixin}"!="")edited #end"  name="userInfoList[1].userWeixin" id="userWeixin" maxlength="50" value="$!{USERINFO.userWeixin}"/>
+		        							<label for="form_control_1">微信账号</label>
+<!-- 		        							<span class="help-block">请输入微信账号</span> -->
+		            					</div>
+		            				</div>
+        							<div class="col-md-6">
+		        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+		        							<input type="text" class="form-control #if("$!{USERINFO.userPhone}"!="")edited #end"  name="userInfoList[1].userPhone" id="userPhone" maxlength="15" value="$!{USERINFO.userPhone}"/>
+		        							<label for="form_control_1">手机号码</label>
+<!-- 		        							<span class="help-block">请输入手机号码</span> -->
+		            					</div>
+            						</div>
+            					</div>
+            					<div class="row">
+	            						<div class="col-md-12">
+			        						<div class="form-group form-md-line-input  form-md-floating-label has-success">
+			        							<input type="text" class="form-control #if("$!{USERINFO.homeAddress}"!="")edited #end" id="form_control_1" name="userInfoList[1].homeAddress" maxlength="25" value="$!{USERINFO.homeAddress}"/>
+			        							<label for="form_control_1">家庭住址</label>
+			            					</div>
+	            						</div>
+            					</div>
+            					<div class="form-group form-md-line-input form-md-floating-label has-success">
+            						<textarea class="form-control #if("$!{USERINFO.userDesc}"!="")edited #end" rows="3" name="userInfoList[1].userDesc" >$!{USERINFO.userDesc}</textarea>
+            						<label for="form_control_1">个人简介</label>
+<!--             						<span class="help-block">请输入备注信息</span> -->
+            					</div>
+								<!--            				父亲end -->
+
+							</div>
+
+
+							<div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-2 col-md-10">
+										<button type="button" data-dismiss="modal"
+											class="btn btn-default">关闭</button>
+										<button type="submit" class="btn blue">审核通过</button>
+										<button type="button" class="btn blue "
+											onclick="register.notCheck()">审核不通过</button>
+									</div>
+								</div>
+							</div>
+
+							##反馈信息
+							<div id="register-feedback-form" class="modal modal-scroll">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true"></button>
+									<h4 class="modal-title">反馈信息</h4>
+								</div>
+								##模态框内容START
+								<div class="modal-body">
+									<div class="row">
+										<div class="col-md-12">
+											<div
+												class="form-group form-md-line-input form-md-floating-label has-success">
+												<input type="text" class="form-control " id="remarks"
+													maxlength="25" name="remarks" /> <label
+													for="form_control_1">审核不通过原因</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" onclick="register.sureNotCheck()">确认</button>
+								</div>
+							</div>
+
+
+
+						</form>
+					</div>
+					##表单内容END ##表单页脚START ##
+					<div class="modal-footer">##</div>
+				</div>
+				##表单页脚END
+			</div>
+
+		</div>
+		##模态框内容END
+	</div>
+</div>
+<script type="text/javascript">
+	$('.date-picker').datepicker({
+					    autoclose: true,
+					    language: 'zh-CN',
+					    autoclose: true,
+		                todayHighlight: true,
+		                format: "yyyy-mm-dd"
+					});
+</script>

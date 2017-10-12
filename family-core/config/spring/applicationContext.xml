@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+	<context:component-scan base-package="sys.*"></context:component-scan>
+<!-- 实例化上下文用户信息 至于session层-->
+	<bean id="userInfoContext" class="sys.model.controller.UserInfoContext" scope="session" />
+	 <bean id="propertyPlaceHolder"  class="sys.springframework.security.service.impl.PropertyPlaceHolder">  
+    <property name="locations">  
+    	<list>
+	        <value>classpath:familyBasis.properties</value>  
+        </list>
+    </property>  
+    <property name="fileEncoding" value="utf-8" />  
+</bean>  
+
+</beans>

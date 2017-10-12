@@ -1,0 +1,17 @@
+##家族文化
+<div class="row">
+    <div class="col-md-12">
+		#parse("admin/menus/set/familyCulture/familyCulture-list.vm")
+    </div>
+</div>
+
+<script type="text/javascript" >
+<!-- 
+	jQuery(function($){
+	    $.getScript( "$!{req.contextPath}/monkey/vm/menus/set/familyCulture/familyCulture.js", function( data, textStatus, jqxhr ) {
+	    	familyCulture.init();
+	    });
+	});
+
+//-->
+</script>	

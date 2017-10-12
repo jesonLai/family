@@ -1,0 +1,107 @@
+##编辑 #parse("admin/navigation-head.vm")
+<div class="row margin-top-20">
+	<div class="row">
+		<div class="col-md-12">
+			<div id="email-parameter-modal" class="modal modal-scroll fade"
+				tabindex="-1">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true"></button>
+				</div>
+				<div class="portlet light bordered">
+					##表单标题START
+					<div class="portlet-title">
+						<div class="caption font-green-haze">
+							<i class="icon-settings font-green-haze"></i> <span
+								class="caption-subject bold uppercase" id="user_title_table">邮箱参数</span>
+							<div class="tools"></div>
+						</div>
+					</div>
+					##表单标题END ##表单内容
+					<div class="portlet-body form">
+
+						<form role="form" class="email-parameter-form" method="POST">
+							<div class="form-body">
+								<div class="row">
+									<div class="col-md-12">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control #if("
+												$!{SENDEREMAIL.host}"!="" )edited #end" id="host"
+												name="host" value="$!{SENDEREMAIL.host}"> <label
+												for="form_control_1">邮箱地址</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control edited" id="protocol"
+												name="protocol" value="$!{SENDEREMAIL.protocol}"> <label
+												for="form_control_1">邮箱协议</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control edited" id="port"
+												name="port" value="$!{SENDEREMAIL.port}"> <label
+												for="form_control_1">邮箱端口</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="text" class="form-control edited" id="from"
+												name="from" value="$!{SENDEREMAIL.from}"> <label
+												for="form_control_1">邮箱账号</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div
+											class="form-group form-md-line-input  form-md-floating-label has-success">
+											<input type="password" class="form-control edited" id="pwd"
+												name="pwd" value="$!{SENDEREMAIL.pwd}"> <label
+												for="form_control_1">邮箱密码</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-actions">
+								<div class="row">
+									<div class="col-md-offset-2 col-md-10">
+									<button type="button" data-dismiss="modal"
+											class="btn btn-default">关闭</button>
+										<button type="submit" class="btn blue ">提交</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				##表单页脚END
+			</div>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript">
+<!--
+	jQuery(function($) {
+		$.getScript("$!{req.contextPath}/monkey/vm/menus/set/emailParameter/emailParameter.js",
+						function(data, textStatus, jqxhr) {
+							emailParameter.init();
+						});
+	});
+//-->
+</script>
+
+
+

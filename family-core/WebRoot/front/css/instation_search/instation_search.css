@@ -1,0 +1,22 @@
+/* 搜索结果 */
+.instatiom-search a,dd {
+
+  }
+.instatiom-search a:link {
+	color:#0066cc;
+    text-decoration:underline;
+}
+
+.instatiom-search a:visited {
+    color:#0066cc;
+    text-decoration:none;
+}
+    
+.instatiom-search a:hover {
+    text-decoration:underline;
+    }
+    
+.instatiom-search a:active {
+    color:#CC0000;
+    text-decoration:none;
+}

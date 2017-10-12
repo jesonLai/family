@@ -1,0 +1,16 @@
+##用户登录容器
+<div class="row">
+    <div class="col-md-12">
+		#parse("admin/menus/set/usersLogin/userLogin-list.vm")
+    </div>
+</div>
+<script type="text/javascript" >
+<!-- 
+jQuery(function($){
+    $.getScript( "$!{req.contextPath}/monkey/vm/menus/set/usersLogin/usersLogin.js", function( data, textStatus, jqxhr ) {
+		TableAdvanced.init();
+		USERSLOGIN.init();
+    });
+});
+//-->
+</script>	

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="zh-CN" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="zh-CN" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zh-CN" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<title>test</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<meta name="_csrf" content="${_csrf.token}"/>
+<meta name="_csrf_paraeter" content="${_csrf.parameterName}"/>
+<meta name="_csrf_header" content="${_csrf.headerName}"/>
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="$!{req.contextPath}/monkey/global/plugins/googleapis/css/family.css" rel="stylesheet" type="text/css"/>
+<link href="$!{req.contextPath}/monkey/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="$!{req.contextPath}/monkey/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css"/>
+<link href="$!{req.contextPath}/monkey/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="$!{req.contextPath}/monkey/global/css/metroStyle/metroStyle.css" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/jquery-multi-select/css/multi-select.css"/>
+
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/jquery-ui/jquery-ui.min.css"/>
+
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css"/>
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css"/>
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css"/>
+
+<link href="$!{req.contextPath}/monkey/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
+<link href="$!{req.contextPath}/monkey/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/bootstrap-toastr/toastr.min.css"/>
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
+
+<link href="$!{req.contextPath}/monkey/pages/css/profile.css" rel="stylesheet" type="text/css" id="style_color"/>
+
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/fancybox/source/jquery.fancybox.css?v=2.1.2" media="screen" />
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+<link rel="stylesheet" type="text/css" href="$!{req.contextPath}/monkey/global/plugins/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+
+<link type="text/css" href="$!{req.contextPath}/monkey/global/plugins/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet"/>
+<link type="text/css" href="$!{req.contextPath}/monkey/pages/css/inbox.css" rel="stylesheet"/>
+<!-- BEGIN THEME STYLES -->
+<link href="$!{req.contextPath}/monkey/global/css/components.css" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="$!{req.contextPath}/monkey/global/css/plugins.css" rel="stylesheet" type="text/css"/>
+<link href="$!{req.contextPath}/monkey/layout/css/layout.css" rel="stylesheet" type="text/css"/>
+<link href="$!{req.contextPath}/monkey/layout/css/themes/darkblue.css" rel="stylesheet" type="text/css" id="style_color"/>
+<link href="$!{req.contextPath}/monkey/layout/css/custom.css" rel="stylesheet" type="text/css"/>
+
+
+<!-- END THEME STYLES -->
+<link rel="shortcut icon" href="$!{req.contextPath}/monkey/favicon.ico"/>
+<link href="$!{req.contextPath}/monkey/global/plugins/bootstrap-fileinput/css/bootstrap-fileinput.css" rel="stylesheet" type="text/css"/>
+
+##zTree THEME STYLES
+<link href="$!{req.contextPath}/monkey/global/plugins/zTree/css/zTreeStyle.css" rel="stylesheet" type="text/css"/>
+##zTree THEME STYLES
+<!-- 上传头像 -->
+<style type="text/css">
+.container { width: 800px; margin: 0 auto; }
+.autocomplete-suggestions { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; border: 1px solid #999; background: #FFF; cursor: default; overflow: auto; -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-no-suggestion { padding: 2px 5px;}
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: bold; color: #000; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { font-weight: bold; font-size: 16px; color: #000; display: block; border-bottom: 1px solid #000; }
+</style>
+<script type="text/javascript">basePath='$!{req.contextPath}';</script>
+</head>
+##<!-- END HEAD -->
+##<!-- BEGIN BODY -->
+<body class="page-header-fixed page-quick-sidebar-over-content page-sidebar-closed-hide-logo page-container-bg-solid">
+#parse("admin/head.vm")
+
+##<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN SIDEBAR -->
+	<div class="page-sidebar-wrapper">
+		##<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+		##<!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+		#parse("admin/center-menu.vm")
+	</div>
+	<!-- END SIDEBAR -->
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			#parse("admin/center-main.vm")
+        </div>
+	</div>
+	<!-- END CONTENT -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+	
+</div>
+
+
+
+
+
+
+
+
+##系统提示START
+		<div id="myModal" class="modal fade modal-scroll" tabindex="-1" data-replace="true">
+        	<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+        		<h4 class="modal-title">系统提示</h4>
+        	</div>
+			##模态框内容START
+			<div class="modal-body">
+			qw
+			</div>
+			##模态框内容END
+			<div class="modal-footer">
+               <button type="button" data-dismiss="modal" class="btn btn-default">确定</button>
+    			<button type="button" class="btn blue " >取消</button>		
+             </div>
+		</div>
+
+##系统提示END
+
+
+
+
+<!--[if lt IE 9]>
+<script src="$!{req.contextPath}/monkey/global/plugins/respond.min.js"></script>
+<script src="$!{req.contextPath}/monkey/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<!-- END FOOTER -->
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/jquery.min.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<!-- family basis -->
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/select2/select2.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/select2/select2_locale_zh-CN.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/jquery-multi-select/js/jquery.multi-select.js"></script>
+
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/bootstrap-modal/js/bootstrap-modal.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/bootstrap-toastr/toastr.min.js"></script>
+
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+
+
+<!-- image showMessage -->
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/fancybox/source/jquery.fancybox.js?v=2.1.3"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.5"></script>
+<!-- image upload-->
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/bootstrap-fileinput/js/bootstrap-fileinput.js"></script>
+<script src="$!{req.contextPath}/monkey/global/plugins/bootstrap-fileinput/js/zh.js"></script>
+
+<!-- END PAGE LEVEL PLUGINS -->
+
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/scripts/metronic.js" ></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/layout/scripts/layout.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/layout/scripts/quick-sidebar.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/vm/center-menu.js"></script>
+
+<script type="text/javascript" src="$!{req.contextPath}/monkey/pages/scripts/ui-extended-modals.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/pages/scripts/ui-toastr.js"></script>
+<!-- ueditor -->
+<script type="text/javascript" charset="utf-8" src="$!{req.contextPath}/monkey/global/plugins/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="$!{req.contextPath}/monkey/global/plugins/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="$!{req.contextPath}/monkey/global/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+##<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/jquery-autocomplete/js/jquery.autocomplete.js"></script>
+##<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/jquery-autocomplete/js/jquery.mockjax.js"></script>
+
+
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/datatables/dataTables.treeGrid.js"></script>
+
+
+##<!-- 重构-->
+<script type="text/javascript" src="$!{req.contextPath}/monkey/jquery-reAjax.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/sys/js/toastr.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/sys/js/table-advanced.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/sys/js/person.js"></script>
+
+##zTree THEME JS
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/zTree/js/jquery.ztree.core.min.js"></script>
+<script type="text/javascript" src="$!{req.contextPath}/monkey/global/plugins/zTree/js/jquery.ztree.excheck.min.js"></script>
+##zTree THEME JS
+<script>
+ jQuery(document).ready(function() {
+ 	Metronic.init();
+  	Layout.init(); // init current layout
+	QuickSidebar.init(); // init quick sidebar
+ 	Menu.init();
+	toastrs.init();
+	TableAdvanced.init();
+	UIExtendedModals.init();
+	PERSONS.init();
+	
+ });
+</script>
+<!-- END JAVASCRIPTS -->
+#set($urls=$session.getAttribute("SPRING_SECURITY_CONTEXT"))
+#set($arr = $!{urls.authentication.principal.Authorities})
+#set($bl=false)
+#foreach($item in $arr)
+	#if($item=="ROLE_SYSTEM")
+		#set($bl=true)
+	#end
+#end    
+<script type="text/javascript">
+<!--
+jQuery(function(){
+	$("div[id='divContent']").each(function(){
+		var txt=$(this).text();
+		if(txt.length>11){
+			txt=txt.substr(0,11)+"...";
+		}
+		$(this).next('textarea').addClass("edited").text(txt);
+	})
+	isSystem=$!{bl};
+	document.oncontextmenu=new Function("return false") 
+
+	function click(e) {
+		 if (document.all) {
+			 if (event.button==2||event.button==3) { 
+				oncontextmenu='return false';
+			 }
+		 }
+		 if (document.layers) {
+			 if (e.which == 3) {
+				 oncontextmenu='return false';
+			 }
+		 }
+	 }
+	 if (document.layers) {
+		 document.captureEvents(Event.MOUSEDOWN);
+	 }
+	 document.onmousedown=click;
+	document.onkeydown =document.onkeyup = document.onkeypress=function(){ 
+	 if(window.event.keyCode == 123) { 
+		 window.event.returnValue=false;
+		 return(false); 
+	 } 
+	 }
+})
+
+//-->
+// document.onselectstart=new Function("return false") 
+</script>
+
+</body>
+<!-- END BODY -->
+</html>
